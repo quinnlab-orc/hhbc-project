@@ -1,0 +1,112 @@
+.App {
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 275px;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+}
+.signupbutton {
+  width: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+}
+
+.signIn {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  border: 2px solid black;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 200px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  list-style: none;
+}
+
+.nav {
+  background: rgb(255, 255, 255);
+  border: 2px solid black;
+  border-radius: 0, 0, 10px, 10px;
+}
+
+.albums {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: rgb(134, 31, 121);
+  width: 50%;
+}
+
+.poll {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: rgba(255, 255, 255, 0.8);
+  width: 40%;
+}
+
+.pollIsLogged {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: rgba(255, 255, 255, 0.8);
+  width: 20%;
+}
+
+.Homepage {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  border: 2px solid black;
+  border-radius: 20px;
+}
