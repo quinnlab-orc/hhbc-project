@@ -6,7 +6,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/users/getUser")
+      .get("/api/users/getUser")
       .then(function (response) {
         console.log(response.data.firstname);
         setName(", " + response.data.firstname + ",");

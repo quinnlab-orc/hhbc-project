@@ -15,7 +15,7 @@ const DisplayPoll = () => {
 
   const getAlbums = () => {
     axios
-      .get("http://localhost:5000/api/votes/getalbums")
+      .get("/api/votes/getalbums")
       .then(function (response) {
         setAlbumState([
           response.data.album1,
@@ -39,7 +39,7 @@ const DisplayPoll = () => {
   useEffect(() => {
     //gets user from server
     axios
-      .get("http://localhost:5000/api/users/getUser")
+      .get("/api/users/getUser")
       .then(function (response) {
         setName(response.data.firstname);
         setLoggedInVis("hidden");
@@ -64,7 +64,7 @@ const DisplayPoll = () => {
 
   const getVotesFromDB = () => {
     axios
-      .get("http://localhost:5000/api/votes/getvotes")
+      .get("/api/votes/getvotes")
       .then(function (response) {
         if (response.data.uservote) {
           setUserVote(response.data.uservote.album);
@@ -95,7 +95,7 @@ const DisplayPoll = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/votes/vote", voteInfo)
+      .post("/api/votes/vote", voteInfo)
       .then(function (response) {
         getVotesFromDB();
       })
