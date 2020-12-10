@@ -20,7 +20,7 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join('build'))); //something for heroku
+app.use(express.static(path.join(__dirname, 'build'))); //something for heroku
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000, secure: false } }))
 app.use(AuthPassport.initialize());
 app.use(AuthPassport.session());
