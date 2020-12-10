@@ -18,10 +18,9 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
   next();
 });
 
-app.use(express.static(path.join('build')));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join('build'))); //something for heroku
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000, secure: false } }))
 app.use(AuthPassport.initialize());
 app.use(AuthPassport.session());
@@ -39,7 +38,7 @@ app.get("/log-out", (req, res) => {
 //   res.status(404).send('{"error": "not found"}');
 // });
 
-app.get('/*', (req, res) => {
+app.get('/*', (req, res) => { //something for heroku
   res.sendFile(path.join(__dirname, 'build', './public/index.html'))
 })
 
