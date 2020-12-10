@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ChooseNewAlbums from "./choosenewalbums";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 const axios = require("axios");
 
 //store votes with user ID instead of name - TODO
@@ -34,7 +34,7 @@ const DisplayPoll = () => {
 
   const [adminVis, setAdminVis] = useState("hidden");
   const [loggedInVis, setLoggedInVis] = useState("visible");
-  const [voteButtonVis, setVoteButtonVis] = useState("hidden");
+  // const [voteButtonVis, setVoteButtonVis] = useState("hidden");
 
   useEffect(() => {
     //gets user from server
@@ -43,7 +43,7 @@ const DisplayPoll = () => {
       .then(function (response) {
         setName(response.data.firstname);
         setLoggedInVis("hidden");
-        setVoteButtonVis("visible");
+        //setVoteButtonVis("visible");
 
         if (response.data.firstname === "Quinn") {
           setAdminVis("visible");

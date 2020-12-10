@@ -21,32 +21,13 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'build'))); //something for heroku
+// app.use(express.static(path.join(__dirname, 'build'))); //something for heroku
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000, secure: false } }))
 app.use(AuthPassport.initialize());
 app.use(AuthPassport.session());
 
 app.use("/api/users", userRoute);
 app.use("/api/votes", voteRoute);
-
-app.get("/log-out", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
-
-// last-resort 404
-// app.use((_, res) => {
-//   res.status(404).send('{"error": "not found"}');
-// });
-
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, './build/index.html'), function (err) {
-    console.log('hi jackson')
-    if (err) {
-      console.log(err);
-    }
-  })
-})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

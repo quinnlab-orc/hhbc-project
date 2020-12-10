@@ -9,7 +9,7 @@ const rejectUnauthenticated = require("../../modules/rejectUnauth.js")
 //puts the 3 randomely selected albums into the server
 router.post("/newalbums", async (req, res) => {
   try {
-    console.log(req.body)
+    //console.log(req.body)
     await Albums.findOneAndRemove();
     await Votes.deleteMany({})
 
@@ -28,7 +28,7 @@ router.post("/newalbums", async (req, res) => {
 router.get("/getalbums", async (req, res) => {
   try {
     const findAlbums = await Albums.findOne();
-    console.log(findAlbums)
+    //console.log(findAlbums)
     res.send(findAlbums);
   } catch (err) {
     console.error(err.message);
@@ -40,7 +40,7 @@ router.get("/getalbums", async (req, res) => {
 
 router.post('/vote', rejectUnauthenticated, async (req, res) => {  //sends vote to database with album title and users firstname
   try {
-    console.log(req.body)
+    //console.log(req.body)
     await Votes.findOneAndRemove({ user: req.body.user})
 
     const vote = new Votes({
@@ -56,7 +56,7 @@ router.post('/vote', rejectUnauthenticated, async (req, res) => {  //sends vote 
 })
 
 const rejectUnauthenticatedForVotes = async (req, res, next) => {
-  console.log(req);
+  //console.log(req);
   if (req.isAuthenticated()) {
     //console.log("success");
     next();
