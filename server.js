@@ -40,7 +40,7 @@ app.get("/log-out", (req, res) => {
 // });
 
 app.get('/*', (req, res) => { //something for heroku
-  res.sendFile(path.join(__dirname, 'build', './public/index.html'))
+  res.sendFile(path.join(__dirname, 'build', './build/index.html'))
 })
 
 const PORT = process.env.PORT || 5000;
