@@ -54,11 +54,6 @@ const DisplayPoll = () => {
       });
   }, []);
 
-  //let votes = []; // emtpy array populated by the function below with votes from database
-  // const [vote0, setVote0] = useState(0);
-  // const [vote1, setVote1] = useState(0);
-  // const [vote2, setVote2] = useState(0);
-
   const [userVote, setUserVote] = useState();
   const [allVotes, setAllVotes] = useState([{ album: "" }]);
   console.log(allVotes);
@@ -66,9 +61,6 @@ const DisplayPoll = () => {
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
   let votes1 = allVotes.filter((album) => album.album === albumState[1].title);
   let votes2 = allVotes.filter((album) => album.album === albumState[2].title);
-  console.log(votes0);
-  console.log(votes1);
-  console.log(votes2);
 
   const getVotesFromDB = () => {
     axios

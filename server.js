@@ -18,6 +18,12 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
   next();
 });
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000, secure: false } }))
