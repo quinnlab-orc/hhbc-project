@@ -41,6 +41,7 @@ app.get("/log-out", (req, res) => {
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, './build/index.html'), function (err) {
+    console.log('hi jackson')
     if (err) {
       console.log(err);
     }
