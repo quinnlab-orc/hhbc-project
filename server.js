@@ -39,8 +39,12 @@ app.get("/log-out", (req, res) => {
 //   res.status(404).send('{"error": "not found"}');
 // });
 
-app.get('/*', (req, res) => { //something for heroku
-  res.sendFile(path.join(__dirname, 'build', './build/index.html'))
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, './build/index.html'), function (err) {
+    if (err) {
+      console.log(err);
+    }
+  })
 })
 
 const PORT = process.env.PORT || 5000;
