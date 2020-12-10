@@ -18,11 +18,7 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
+app.use(express.static(path.join('build')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +38,10 @@ app.get("/log-out", (req, res) => {
 // app.use((_, res) => {
 //   res.status(404).send('{"error": "not found"}');
 // });
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', './public/index.html'))
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
