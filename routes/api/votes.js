@@ -9,7 +9,7 @@ const rejectUnauthenticated = require("../../modules/rejectUnauth.js")
 //puts the 3 randomely selected albums into the server
 router.post("/newalbums", async (req, res) => {
   try {
-    // console.log(req.body)
+    //console.log(req.body)
     await Albums.findOneAndRemove();
     await Votes.deleteMany({})
 

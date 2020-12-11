@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const axios = require("axios");
 
 const SignUp = () => {
@@ -12,7 +12,7 @@ const SignUp = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:5000/api/users/", newUser)
+      .post("/api/users/", newUser)
       .then(function (response) {})
       .catch(function (error) {
         console.error(error);

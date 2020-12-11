@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ChooseNewAlbums from "./choosenewalbums";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 const axios = require("axios");
 
 //store votes with user ID instead of name - TODO
@@ -15,7 +15,7 @@ const DisplayPoll = () => {
 
   const getAlbums = () => {
     axios
-      .get("http://localhost:5000/api/votes/getalbums")
+      .get("/api/votes/getalbums")
       .then(function (response) {
         setAlbumState([
           response.data.album1,
@@ -34,16 +34,16 @@ const DisplayPoll = () => {
 
   const [adminVis, setAdminVis] = useState("hidden");
   const [loggedInVis, setLoggedInVis] = useState("visible");
-  const [voteButtonVis, setVoteButtonVis] = useState("hidden");
+  // const [voteButtonVis, setVoteButtonVis] = useState("hidden");
 
   useEffect(() => {
     //gets user from server
     axios
-      .get("http://localhost:5000/api/users/getUser")
+      .get("/api/users/getUser")
       .then(function (response) {
         setName(response.data.firstname);
         setLoggedInVis("hidden");
-        setVoteButtonVis("visible");
+        //setVoteButtonVis("visible");
 
         if (response.data.firstname === "Quinn") {
           setAdminVis("visible");
@@ -54,11 +54,6 @@ const DisplayPoll = () => {
       });
   }, []);
 
-  //let votes = []; // emtpy array populated by the function below with votes from database
-  // const [vote0, setVote0] = useState(0);
-  // const [vote1, setVote1] = useState(0);
-  // const [vote2, setVote2] = useState(0);
-
   const [userVote, setUserVote] = useState();
   const [allVotes, setAllVotes] = useState([{ album: "" }]);
   console.log(allVotes);
@@ -66,13 +61,10 @@ const DisplayPoll = () => {
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
   let votes1 = allVotes.filter((album) => album.album === albumState[1].title);
   let votes2 = allVotes.filter((album) => album.album === albumState[2].title);
-  console.log(votes0);
-  console.log(votes1);
-  console.log(votes2);
 
   const getVotesFromDB = () => {
     axios
-      .get("http://localhost:5000/api/votes/getvotes")
+      .get("/api/votes/getvotes")
       .then(function (response) {
         if (response.data.uservote) {
           setUserVote(response.data.uservote.album);
@@ -103,7 +95,7 @@ const DisplayPoll = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/votes/vote", voteInfo)
+      .post("/api/votes/vote", voteInfo)
       .then(function (response) {
         getVotesFromDB();
       })

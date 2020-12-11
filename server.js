@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -20,6 +21,7 @@ app.use(function(req, res, next) { //some stackoverflow shit I found
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'build'))); //something for heroku
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000, secure: false } }))
 app.use(AuthPassport.initialize());
 app.use(AuthPassport.session());
@@ -27,15 +29,6 @@ app.use(AuthPassport.session());
 app.use("/api/users", userRoute);
 app.use("/api/votes", voteRoute);
 
-app.get("/log-out", (req, res) => {
-  req.logout();
-  res.redirect("/");
-});
-
-// last-resort 404
-// app.use((_, res) => {
-//   res.status(404).send('{"error": "not found"}');
-// });
-
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000; before pushing to heroku
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

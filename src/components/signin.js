@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 const axios = require("axios");
 
@@ -11,7 +11,7 @@ const SignIn = (props) => {
   
     const handleSubmit = () => {
       axios
-        .post("http://localhost:5000/api/users/login", signIn)
+        .post("/api/users/login", signIn)
         .then(function (response) {
           // console.log(response);
           if (response.data) {

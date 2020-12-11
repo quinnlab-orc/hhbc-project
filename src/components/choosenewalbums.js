@@ -25,7 +25,7 @@ const ChooseNewAlbums = () => {
     // }
   
     axios
-      .post("http://localhost:5000/api/votes/newalbums", albums)
+      .post("/api/votes/newalbums", albums)
       .then(function (response) {
         console.log(response);
       })
