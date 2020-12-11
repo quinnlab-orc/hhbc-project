@@ -24,7 +24,7 @@ const HomePage = () => {
         will be chosen for the next week.
       </p>
       <div>
-        <h3>This week's album is: </h3>
+        <h3>This week's album is: Below the Heavens - Blu & Exile</h3>
       </div>
     </div>
   );

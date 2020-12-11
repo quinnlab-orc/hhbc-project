@@ -70,7 +70,7 @@ ul {
   margin-top: 50px;
   border-radius: 20px;
   border: 2px solid black;
-  background: rgb(134, 31, 121);
+  background: rgba(255, 255, 255, 0.9);
   width: 50%;
 }
 
@@ -82,7 +82,7 @@ ul {
   margin-top: 50px;
   border-radius: 20px;
   border: 2px solid black;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   width: 40%;
 }
 
@@ -94,15 +94,27 @@ ul {
   margin-top: 50px;
   border-radius: 20px;
   border: 2px solid black;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   width: 20%;
+}
+
+.pollRules {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  width: 40%;
 }
 
 .Homepage {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   width: 75%;
   margin-left: auto;
   margin-right: auto;

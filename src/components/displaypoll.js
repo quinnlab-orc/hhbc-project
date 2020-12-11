@@ -117,6 +117,11 @@ const DisplayPoll = () => {
         <h4>Total number of votes: {allVotes.length}</h4>
       </div>
 
+      <div className="pollRules">
+        <p>To vote, simply select one of the options below and hit submit.</p>
+        <p>If you need to change your vote you can select a different album and hit submit.</p>
+      </div>
+
       <div className="poll">
         <form>
           <h3>{albumState[0].artist + " - " + albumState[0].title}</h3>
