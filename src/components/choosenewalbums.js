@@ -2,36 +2,46 @@ import albumsJSON from "../albums.json";
 const axios = require("axios");
 
 const ChooseNewAlbums = () => {
-    const albumArray = albumsJSON.albums.map(({ title, artist }) => ({
-      artist,
-      title,
-    }));
-  
-    //add logic to make sure no two albums are picked twice
-    let album1 = albumArray[Math.floor(Math.random() * albumArray.length)];
-    let album2 = albumArray[Math.floor(Math.random() * albumArray.length)];
-    let album3 = albumArray[Math.floor(Math.random() * albumArray.length)];
-  
-    let albums = [album1, album2, album3];
-  
-    // for (let i = 0; i < 3; i++) {
-    //   if (album1 === album2 || album1 === album3 || album2 === album3) {
-    //     album1 = albumArray[Math.floor(Math.random() * albumArray.length)];
-    //     album2 = albumArray[Math.floor(Math.random() * albumArray.length)];
-    //     album3 = albumArray[Math.floor(Math.random() * albumArray.length)];
-    //   } else {
-    //     albums = [album1, album2, album3];
-    //   }
-    // }
-  
-    axios
-      .post("/api/votes/newalbums", albums)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
+  const albumArray = albumsJSON.albums.map(({ title, artist }) => ({
+    artist,
+    title,
+  }));
 
-  export default ChooseNewAlbums;
+  let album1 = albumArray[Math.floor(Math.random() * albumArray.length)];
+
+  //these for loops prevent the same album from being selected twice
+  for (let i = 0; i < albumArray.length; i++) {
+    if (albumArray[i] === album1) {
+      albumArray.splice(i, 1);
+    }
+  }
+
+  let album2 = albumArray[Math.floor(Math.random() * albumArray.length)];
+
+  for (let i = 0; i < albumArray.length; i++) {
+    if (albumArray[i] === album2) {
+      albumArray.splice(i, 1);
+    }
+  }
+
+  let album3 = albumArray[Math.floor(Math.random() * albumArray.length)];
+
+  for (let i = 0; i < albumArray.length; i++) {
+    if (albumArray[i] === album3) {
+      albumArray.splice(i, 1);
+    }
+  }
+
+  let albums = [album1, album2, album3];
+
+  // axios
+  //   .post("/api/votes/newalbums", albums)
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.error(error);
+  //   });
+};
+
+export default ChooseNewAlbums;

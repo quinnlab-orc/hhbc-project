@@ -56,11 +56,21 @@ const DisplayPoll = () => {
 
   const [userVote, setUserVote] = useState();
   const [allVotes, setAllVotes] = useState([{ album: "" }]);
-  console.log(allVotes);
 
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
+  let voteNames0 = votes0.map((items) => items.user);
+
   let votes1 = allVotes.filter((album) => album.album === albumState[1].title);
+  let voteNames1 = votes1.map((items) => items.user);
+  // let voteArr1 = []
+  // for (let i = 0; i < voteNames1.length; i++) {
+  //   voteArr1.push(voteNames1[i])
+  // }
+
   let votes2 = allVotes.filter((album) => album.album === albumState[2].title);
+  let voteNames2 = votes2.map((items) => items.user);
+
+  console.log(voteNames1)
 
   const getVotesFromDB = () => {
     axios
@@ -119,13 +129,17 @@ const DisplayPoll = () => {
 
       <div className="pollRules">
         <p>To vote, simply select one of the options below and hit submit.</p>
-        <p>If you need to change your vote you can select a different album and hit submit.</p>
+        <p>
+          If you need to change your vote you can select a different album and
+          hit submit.
+        </p>
       </div>
 
       <div className="poll">
         <form>
           <h3>{albumState[0].artist + " - " + albumState[0].title}</h3>
           <p>{votes0.length}</p>
+          <p>{voteNames0.map((name) => <p>{name}</p>)}</p>
           <input
             type="radio"
             checked={selectedAlbum[0]}
@@ -134,6 +148,7 @@ const DisplayPoll = () => {
 
           <h3>{albumState[1].artist + " - " + albumState[1].title}</h3>
           <p>{votes1.length}</p>
+          <p>{voteNames1.map((name) => <p>{name}</p>)}</p>
           <input
             type="radio"
             checked={selectedAlbum[1]}
@@ -142,6 +157,7 @@ const DisplayPoll = () => {
 
           <h3>{albumState[2].artist + " - " + albumState[2].title}</h3>
           <p>{votes2.length}</p>
+          <p>{voteNames2.map((name) => <p>{name}</p>)}</p>
           <input
             type="radio"
             checked={selectedAlbum[2]}
@@ -160,36 +176,3 @@ const DisplayPoll = () => {
 };
 
 export default DisplayPoll;
-
-// {albumState[0].artist + " - " + albumState[0].title}
-//         <br />
-//         Votes: {vote0}
-//         <br />
-//         <button
-//           onClick={() => sendVotes(albumState[0], name)}
-//           // style={{ visibility: voteButtonVis }}
-//         >
-//           Vote
-//         </button>
-//         <br />
-//         {albumState[1].artist + " - " + albumState[1].title}
-//         <br />
-//         Votes: {vote1}
-//         <br />
-//         <button
-//           onClick={() => sendVotes(albumState[1], name)}
-//           // style={{ visibility: voteButtonVis }}
-//         >
-//           Vote
-//         </button>
-//         <br />
-//         {albumState[2].artist + " - " + albumState[2].title}
-//         <br />
-//         Votes: {vote2}
-//         <br />
-//         <button
-//           onClick={() => sendVotes(albumState[2], name)}
-//           // style={{ visibility: voteButtonVis }}
-//         >
-//           Vote
-//         </button>

@@ -1,22 +1,3 @@
-Planning area:
-
-find way to display album covers on home page
-embed spotify links?
-
-
-more polls, TI v Ludacris
-
-Passport.js -- library for account info
-
-
-make the accounts have passwords
-
-localstorage for name
-
-if (!localstorageusername) {
-    prompt user to sign in using their name
-    send that to database
-    print to screen //Welcome, username
-} else {
-    print localstorageusername to screen //Welcome, localstorageusername
-}
+add account creation confirmation popup
+success login redirect to home page
+mobile formatting

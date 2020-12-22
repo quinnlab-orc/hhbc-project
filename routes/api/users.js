@@ -51,4 +51,9 @@ router.post("/login", AuthPassport.authenticate("local"), (req, res) => {
   // }
 });
 
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+})
+
 module.exports = router;
