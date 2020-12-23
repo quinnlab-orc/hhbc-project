@@ -33,9 +33,9 @@ function App() {
             <li>
               <Link to="/signin">Sign In</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/profile">Profile</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
 
@@ -52,9 +52,9 @@ function App() {
           <Route path="/albums">
             <DisplayAlbums />
           </Route>
-          <Route path="/profile">
+          {/* <Route path="/profile">
             <Profile />
-          </Route>
+          </Route> */}
           <Route path="/">
             <HomePage />
           </Route>
