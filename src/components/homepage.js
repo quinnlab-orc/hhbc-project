@@ -74,7 +74,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="Homepage">
-        <h1>Welcome{name} to the Hip Hop Book Club home page!</h1>
+        <h1>Welcome{name} to the Hip-Hop Book Club home page!</h1>
         <p>
           Here we can check on all the albums in the list and vote on what album
           will be chosen for the next week.
