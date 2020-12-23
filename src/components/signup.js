@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 const axios = require("axios");
 
 const SignUp = () => {
@@ -13,7 +14,22 @@ const SignUp = () => {
   const handleSubmit = () => {
     axios
       .post("/api/users/", newUser)
-      .then(function (response) {})
+      .then(function (response) {
+        console.log(response);
+        if (response.data === "Email already in use") {
+          Swal.fire({
+            title: "Email is already in use.",
+            timer: 5000,
+          })
+        } 
+        if (response.data === "User Route") {
+          Swal.fire({
+            title: "Account created!",
+            icon: "success",
+            timer: 3000
+          })
+        }
+      })
       .catch(function (error) {
         console.error(error);
       });
@@ -75,10 +91,10 @@ const SignUp = () => {
             })
           }
         ></input>
-        <button className="signupbutton" onClick={() => handleSubmit()}>
-          Sign up
-        </button>
       </form>
+      <button className="signupbutton" onClick={() => handleSubmit()}>
+        Sign up
+      </button>
     </div>
   );
 };

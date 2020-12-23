@@ -34,14 +34,14 @@ const ChooseNewAlbums = () => {
 
   let albums = [album1, album2, album3];
 
-  // axios
-  //   .post("/api/votes/newalbums", albums)
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.error(error);
-  //   });
+  axios
+    .post("/api/votes/newalbums", albums)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 };
 
 export default ChooseNewAlbums;

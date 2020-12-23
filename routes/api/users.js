@@ -5,6 +5,7 @@ const passport = require("passport");
 const AuthPassport = require("../../modules/passport.js");
 const UserModel = require("../../schemas/Users"); //schemas
 const Votes = require("../../schemas/Votes"); //schemas
+const UserAlbum = require("../../schemas/userAlbum"); //schemas
 const { route } = require("./votes.js");
 const rejectUnauthenticated = require("../../modules/rejectUnauth.js")
 
@@ -13,6 +14,15 @@ router.post(
   "/",
   async (req, res) => {
     try {
+      const findExistingEmail = await UserModel.findOne({ email: req.body.email })
+
+      if (findExistingEmail) {
+        console.log("Email already in use")
+        res.send("Email already in use")
+        return;
+      }
+
+
       const saltRounds = 10;
       await bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
@@ -44,16 +54,36 @@ router.get("/getUser", rejectUnauthenticated, async (req, res) => {
 
 router.post("/login", AuthPassport.authenticate("local"), (req, res) => {
   res.send(res.req.user);
-  // if (req.isAuthenticated()) {
-  //   console.log("Authenticated")
-  // } else {
-  //   console.log("Incorrect login info")
-  // }
 });
 
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
+})
+
+router.post('/useralbum', rejectUnauthenticated,async function(req, res) {
+  try {
+    await UserAlbum.findOneAndRemove();
+    console.log(req.body)
+    const userAlbum = new UserAlbum({
+      user: req.body.user,
+      artist: req.body.artist,
+      album: req.body.album,
+    })
+    userAlbum.save()
+    res.send("user album route")
+  } catch (err) {
+    console.error(err.message)
+  }
+})
+
+router.get('/getUserAlbum', async function (req, res) {
+  try {
+    const findUserAlbum = await UserAlbum.findOne();
+    res.send(findUserAlbum);
+  } catch (err) {
+    console.error(err.message)
+  }
 })
 
 module.exports = router;

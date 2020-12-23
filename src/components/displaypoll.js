@@ -45,7 +45,7 @@ const DisplayPoll = () => {
     // setLogInVis("none")
     logInVis = "none";
   } else {
-    logInVis="block"
+    logInVis = "block"
   }
 
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
