@@ -45,10 +45,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="albums">
-      <span>Name: {profileInfo.firstname}</span>
-      <span>Last: {profileInfo.lastname}</span>
-      <span>Email: {profileInfo.email}</span>
+    <div>
+      <div className="profile">
+        <span className="profileinfo">Name: {profileInfo.firstname}</span>
+        <span className="profileinfo">Last: {profileInfo.lastname}</span>
+        <span className="profileinfo">Email: {profileInfo.email}</span>
+      </div>
       <form>
         <button onClick={() => logOut()}>Log Out</button>
       </form>

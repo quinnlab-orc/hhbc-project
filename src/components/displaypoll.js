@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import ChooseNewAlbums from "./choosenewalbums";
 // import Swal from "sweetalert2";
 const axios = require("axios");
@@ -32,45 +33,29 @@ const DisplayPoll = () => {
     getAlbums();
   }, []);
 
-  const [adminVis, setAdminVis] = useState("hidden");
-  const [loggedInVis, setLoggedInVis] = useState("visible");
-  // const [voteButtonVis, setVoteButtonVis] = useState("hidden");
-
-  useEffect(() => {
-    //gets user from server
-    axios
-      .get("/api/users/getUser")
-      .then(function (response) {
-        setName(response.data.firstname);
-        setLoggedInVis("hidden");
-        //setVoteButtonVis("visible");
-
-        if (response.data.firstname === "Quinn") {
-          setAdminVis("visible");
-        }
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }, []);
-
+  const [adminVis, setAdminVis] = useState("none");
+  // const [logInVis, setLogInVis] = useState("none");
+  let logInVis = "none";
   const [userVote, setUserVote] = useState();
   const [allVotes, setAllVotes] = useState([{ album: "" }]);
+  console.log("userVote" + userVote);
+
+  if (userVote === undefined) {
+    console.log("here");
+    // setLogInVis("none")
+    logInVis = "none";
+  } else {
+    logInVis="block"
+  }
 
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
   let voteNames0 = votes0.map((items) => items.user);
 
   let votes1 = allVotes.filter((album) => album.album === albumState[1].title);
   let voteNames1 = votes1.map((items) => items.user);
-  // let voteArr1 = []
-  // for (let i = 0; i < voteNames1.length; i++) {
-  //   voteArr1.push(voteNames1[i])
-  // }
 
   let votes2 = allVotes.filter((album) => album.album === albumState[2].title);
   let voteNames2 = votes2.map((items) => items.user);
-
-  console.log(voteNames1)
 
   const getVotesFromDB = () => {
     axios
@@ -92,6 +77,24 @@ const DisplayPoll = () => {
     getVotesFromDB();
   }, [albumState]);
 
+  useEffect(() => {
+    //gets user from server
+    axios
+      .get("/api/users/getUser")
+      .then(function (response) {
+        setName(response.data.firstname);
+        // setLogInVis("block");
+        logInVis = "block";
+
+        if (response.data.firstname === "Quinn") {
+          setAdminVis("block");
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
   const [selectedAlbum, setSelectedAlbum] = useState([false, false, false]);
   const sendVotes = () => {
     let voteInfo = {};
@@ -110,22 +113,21 @@ const DisplayPoll = () => {
         getVotesFromDB();
       })
       .catch(function (error) {
-        console.error(error);
+        console.error("here" + error);
+        Swal.fire({
+          title: "Sign in to vote!",
+          timer: 5000,
+          icon: "error",
+        });
       });
   };
 
   return (
     //use one form with 3 radio buttons and a submit for voting. Can control radio button state if they have already voted
     <div>
-      <div className="pollIsLogged" style={{ visibility: loggedInVis }}>
-        <p>Sign in to vote!</p>
-        <p>{name}</p>
-      </div>
-
-      <div className="pollIsLogged">
+      {/* <div className="pollIsLogged">
         <h3>You voted for: {userVote}</h3>
-        <h4>Total number of votes: {allVotes.length}</h4>
-      </div>
+      </div> */}
 
       <div className="pollRules">
         <p>To vote, simply select one of the options below and hit submit.</p>
@@ -135,40 +137,69 @@ const DisplayPoll = () => {
         </p>
       </div>
 
+      <div className="pollIsLogged" style={{ display: logInVis }}>
+        <h3>You voted for: {userVote}</h3>
+      </div>
+
       <div className="poll">
         <form>
-          <h3>{albumState[0].artist + " - " + albumState[0].title}</h3>
-          <p>{votes0.length}</p>
-          <p>{voteNames0.map((name) => <p>{name}</p>)}</p>
-          <input
-            type="radio"
-            checked={selectedAlbum[0]}
-            onChange={() => setSelectedAlbum([true, false, false])}
-          ></input>
+          <div className="pollSelections">
+            <div className="voteHolder">
+              <h3>{albumState[0].title}</h3>
+              <h4>{albumState[0].artist}</h4>
+              <input
+                type="radio"
+                checked={selectedAlbum[0]}
+                onChange={() => setSelectedAlbum([true, false, false])}
+              ></input>
+              <p>{votes0.length}</p>
+              <p>
+                {voteNames0.map((name) => (
+                  <p>{name}</p>
+                ))}
+              </p>
+            </div>
 
-          <h3>{albumState[1].artist + " - " + albumState[1].title}</h3>
-          <p>{votes1.length}</p>
-          <p>{voteNames1.map((name) => <p>{name}</p>)}</p>
-          <input
-            type="radio"
-            checked={selectedAlbum[1]}
-            onChange={() => setSelectedAlbum([false, true, false])}
-          ></input>
+            <div className="voteHolder">
+              <h3>{albumState[1].title}</h3>
+              <h4>{albumState[1].artist}</h4>
+              <input
+                type="radio"
+                checked={selectedAlbum[1]}
+                onChange={() => setSelectedAlbum([false, true, false])}
+              ></input>
+              <p>{votes1.length}</p>
+              <p>
+                {voteNames1.map((name) => (
+                  <p>{name}</p>
+                ))}
+              </p>
+            </div>
 
-          <h3>{albumState[2].artist + " - " + albumState[2].title}</h3>
-          <p>{votes2.length}</p>
-          <p>{voteNames2.map((name) => <p>{name}</p>)}</p>
-          <input
-            type="radio"
-            checked={selectedAlbum[2]}
-            onChange={() => setSelectedAlbum([false, false, true])}
-          ></input>
-          <br />
+            <div className="voteHolder">
+              {/* <h3>{albumState[2].artist + " - " + albumState[2].title}</h3> */}
+              <h3>{albumState[2].title}</h3>
+              <h4>{albumState[2].artist}</h4>
+              <input
+                type="radio"
+                checked={selectedAlbum[2]}
+                onChange={() => setSelectedAlbum([false, false, true])}
+              ></input>
+              <p>{votes2.length}</p>
+              <p>
+                {voteNames2.map((name) => (
+                  <p>{name}</p>
+                ))}
+              </p>
+            </div>
+          </div>
           {/* <button onClick={() => sendVotes()}>Submit</button> */}
         </form>
-        <button onClick={() => sendVotes()}>Submit</button>
+        <button className="voteButton" onClick={() => sendVotes()}>
+          Submit
+        </button>
       </div>
-      <div style={{ visibility: adminVis }}>
+      <div style={{ display: adminVis }}>
         <button onClick={ChooseNewAlbums}>New Albums</button>
       </div>
     </div>

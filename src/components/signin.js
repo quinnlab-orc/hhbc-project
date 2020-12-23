@@ -9,11 +9,13 @@ const SignIn = (props) => {
     password: "",
   };
   const [signIn, setSignIn] = useState(initialUserState);
+  const [badTry, setBadTry] = useState('none')
 
   const handleSubmit = () => {
     axios
       .post("/api/users/login", signIn)
       .then(function (response) {
+        setBadTry('none')
         if (response.data) {
           Swal.fire({
             title: "Signed In",
@@ -23,7 +25,8 @@ const SignIn = (props) => {
         }
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error("here " + error);
+        setBadTry('block')
       });
   };
 
@@ -53,6 +56,7 @@ const SignIn = (props) => {
             }
           ></input>
         </form>
+        <span className="badTry" style={{ display: badTry }}>Incorrect username or password.</span>
         <button className="signupbutton" onClick={() => handleSubmit()}>
           Sign In
         </button>
