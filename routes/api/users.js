@@ -7,21 +7,22 @@ const UserModel = require("../../schemas/Users"); //schemas
 const Votes = require("../../schemas/Votes"); //schemas
 const UserAlbum = require("../../schemas/userAlbum"); //schemas
 const { route } = require("./votes.js");
-const rejectUnauthenticated = require("../../modules/rejectUnauth.js")
+const rejectUnauthenticated = require("../../modules/rejectUnauth.js");
 
 router.post(
   //makes new User
   "/",
   async (req, res) => {
     try {
-      const findExistingEmail = await UserModel.findOne({ email: req.body.email })
+      const findExistingEmail = await UserModel.findOne({
+        email: req.body.email,
+      });
 
       if (findExistingEmail) {
-        console.log("Email already in use")
-        res.send("Email already in use")
+        console.log("Email already in use");
+        res.send("Email already in use");
         return;
       }
-
 
       const saltRounds = 10;
       await bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -56,34 +57,41 @@ router.post("/login", AuthPassport.authenticate("local"), (req, res) => {
   res.send(res.req.user);
 });
 
-router.get('/logout', function(req, res) {
+router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect('/');
-})
+  res.redirect("/");
+});
 
-router.post('/useralbum', rejectUnauthenticated,async function(req, res) {
+router.get("/check", rejectUnauthenticated, function (req, res) {
+  // console.log(req.user);
+  if (req.user) {
+    res.send("logged in");
+  }
+});
+
+router.post("/useralbum", rejectUnauthenticated, async function (req, res) {
   try {
     await UserAlbum.findOneAndRemove();
-    console.log(req.body)
+    console.log(req.body);
     const userAlbum = new UserAlbum({
       user: req.body.user,
       artist: req.body.artist,
       album: req.body.album,
-    })
-    userAlbum.save()
-    res.send("user album route")
+    });
+    userAlbum.save();
+    res.send("user album route");
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
   }
-})
+});
 
-router.get('/getUserAlbum', async function (req, res) {
+router.get("/getUserAlbum", async function (req, res) {
   try {
     const findUserAlbum = await UserAlbum.findOne();
     res.send(findUserAlbum);
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
   }
-})
+});
 
 module.exports = router;

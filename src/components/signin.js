@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 const axios = require("axios");
+
 
 const SignIn = (props) => {
   const initialUserState = {
@@ -9,24 +11,25 @@ const SignIn = (props) => {
     password: "",
   };
   const [signIn, setSignIn] = useState(initialUserState);
-  const [badTry, setBadTry] = useState('none')
+  const [badTry, setBadTry] = useState("none");
 
-  const handleSubmit = () => {
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     axios
       .post("/api/users/login", signIn)
       .then(function (response) {
-        setBadTry('none')
+        setBadTry("none");
         if (response.data) {
-          Swal.fire({
-            title: "Signed In",
-            timer: 2000,
-          });
-          return <Redirect to="/albums"></Redirect>;
+          history.push('/')
+          window.location.reload(false)
         }
       })
       .catch(function (error) {
         // console.error(error);
-        setBadTry('block')
+        setBadTry("block");
       });
   };
 
@@ -34,7 +37,7 @@ const SignIn = (props) => {
     <div>
       <div className="signIn">
         <p style={{ fontWeight: "bold", fontSize: "large" }}>Sign In</p>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <label>Email</label>
           <input
             type="email"
@@ -55,11 +58,15 @@ const SignIn = (props) => {
               })
             }
           ></input>
+
+          <span className="badTry" style={{ display: badTry }}>
+            Incorrect username or password.
+          </span>
+          <button type="submit">Submit</button>
         </form>
-        <span className="badTry" style={{ display: badTry }}>Incorrect username or password.</span>
-        <button className="signupbutton" onClick={() => handleSubmit()}>
+        {/* <button className="signupbutton" onClick={() => handleSubmit()}>
           Sign In
-        </button>
+        </button> */}
       </div>
     </div>
   );

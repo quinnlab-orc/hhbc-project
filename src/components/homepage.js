@@ -15,7 +15,6 @@ const HomePage = () => {
     axios
       .get("/api/users/getUserAlbum")
       .then(function (response) {
-        console.log(response.data);
         setUserAlbumInDB({
           user: response.data.user,
           album: response.data.album,
@@ -23,7 +22,7 @@ const HomePage = () => {
         });
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error(error);
       });
   };
 
@@ -31,12 +30,11 @@ const HomePage = () => {
     axios
       .get("/api/users/getUser")
       .then(function (response) {
-        console.log(response.data.firstname);
         setName(", " + response.data.firstname + ",");
         setNameForAlbum(response.data.firstname);
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error(error);
       });
 
     getUserAlbum();
@@ -50,15 +48,14 @@ const HomePage = () => {
   });
 
   const sendUserAlbum = () => {
-    console.log(userAlbum);
     setUserChoiceVis("none")
     axios
       .post("/api/users/useralbum", userAlbum)
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
-        console.error(error.response.status);
+        // console.error(error.response.status);
         if (error.response.status === 403) {
           Swal.fire({
             title: "You need to log in to do that!",

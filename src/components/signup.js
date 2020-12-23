@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 const axios = require("axios");
 
@@ -9,9 +10,12 @@ const SignUp = () => {
     email: "",
     password: "",
   };
+  const history = useHistory();
   const [newUser, setNewUser] = useState(initialUserState);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     axios
       .post("/api/users/", newUser)
       .then(function (response) {
@@ -20,14 +24,15 @@ const SignUp = () => {
           Swal.fire({
             title: "Email is already in use.",
             timer: 5000,
-          })
-        } 
+          });
+        }
         if (response.data === "User Route") {
+          history.push('/signin')
           Swal.fire({
             title: "Account created!",
             icon: "success",
-            timer: 3000
-          })
+            timer: 3000,
+          });
         }
       })
       .catch(function (error) {
@@ -38,7 +43,7 @@ const SignUp = () => {
   return (
     <div className="signUpDiv">
       <p style={{ fontWeight: "bold", fontSize: "large" }}>Sign Up</p>
-      <form className="signUp">
+      <form className="signUp" onSubmit={(e) => handleSubmit(e)}>
         <label>First Name</label>
         <input
           type="text"
@@ -91,10 +96,8 @@ const SignUp = () => {
             })
           }
         ></input>
+        <button type="submit">Sign up</button>
       </form>
-      <button className="signupbutton" onClick={() => handleSubmit()}>
-        Sign up
-      </button>
     </div>
   );
 };

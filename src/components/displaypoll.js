@@ -38,11 +38,8 @@ const DisplayPoll = () => {
   let logInVis = "none";
   const [userVote, setUserVote] = useState();
   const [allVotes, setAllVotes] = useState([{ album: "" }]);
-  console.log("userVote" + userVote);
 
   if (userVote === undefined) {
-    console.log("here");
-    // setLogInVis("none")
     logInVis = "none";
   } else {
     logInVis = "block"
@@ -113,7 +110,6 @@ const DisplayPoll = () => {
         getVotesFromDB();
       })
       .catch(function (error) {
-        console.error("here" + error);
         Swal.fire({
           title: "Sign in to vote!",
           timer: 5000,
@@ -125,9 +121,6 @@ const DisplayPoll = () => {
   return (
     //use one form with 3 radio buttons and a submit for voting. Can control radio button state if they have already voted
     <div>
-      {/* <div className="pollIsLogged">
-        <h3>You voted for: {userVote}</h3>
-      </div> */}
 
       <div className="pollRules">
         <p>To vote, simply select one of the options below and hit submit.</p>

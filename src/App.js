@@ -5,12 +5,37 @@ import SignUp from "./components/signup.js";
 import SignIn from "./components/signin.js";
 import DisplayAlbums from "./components/displayalbums.js";
 import DisplayPoll from "./components/displaypoll.js";
-// import Profile from "./components/profile.js";
+import Profile from "./components/profile.js";
+import { useEffect, useState } from "react";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
 
-//when signed in change Sign Up to be Log Out and Sign In to be the username
+//when signed in change Sign Up to be Profile and Sign In to be Log Out
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);  //needs a refresh to work, happens in signin.js at line 27, kinda hacky - change later
+
+  useEffect(() => {
+    axios
+      .get("/api/users/check")
+      .then(function (response) {
+        console.log(response);
+        setLoggedIn(true);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
+  const logOut = () => {
+    axios
+      .get("http://localhost:5000/api/users/logout")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   return (
     <Router>
@@ -27,14 +52,19 @@ function App() {
               <Link to="/poll">Polls</Link>
             </li>
             <li>
-              <Link to="/signup">Sign Up</Link>
+              {loggedIn === true ? (
+                <Link to="/profile">Profile</Link>
+              ) : (
+                <Link to="/signup">Sign Up</Link>
+              )}
             </li>
             <li>
-              <Link to="/signin">Sign In</Link>
+              {loggedIn === true ? (
+                <button onClick={() => logOut()}>Log Out</button>
+              ) : (
+                <Link to="/signin">Sign In</Link>
+              )}
             </li>
-            {/* <li>
-              <Link to="/profile">Profile</Link>
-            </li> */}
           </ul>
         </nav>
 
@@ -51,9 +81,9 @@ function App() {
           <Route path="/albums">
             <DisplayAlbums />
           </Route>
-          {/* <Route path="/profile">
+          <Route path="/profile">
             <Profile />
-          </Route> */}
+          </Route>
           <Route path="/">
             <HomePage />
           </Route>
