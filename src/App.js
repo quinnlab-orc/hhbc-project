@@ -52,18 +52,21 @@ function App() {
               <Link to="/poll">Polls</Link>
             </li>
             <li>
-              {loggedIn === true ? (
+            <Link to="/signup">Sign Up</Link> 
+            {/* commented out below, not working yet */}
+              {/* {loggedIn === true ? (
                 <Link to="/profile">Profile</Link>
               ) : (
                 <Link to="/signup">Sign Up</Link>
-              )}
+              )} */}
             </li>
             <li>
-              {loggedIn === true ? (
+            <Link to="/signin">Sign In</Link>
+              {/* {loggedIn === true ? (
                 <button onClick={() => logOut()}>Log Out</button>
               ) : (
                 <Link to="/signin">Sign In</Link>
-              )}
+              )} */}
             </li>
           </ul>
         </nav>
