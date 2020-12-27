@@ -44,6 +44,28 @@ router.post(
   }
 );
 
+router.post("/editUser", async function (req, res) {
+  //edits existing user information
+  try {
+    const findUser = await UserModel.findOne({
+      _id: req.body._id,
+    });
+    const editedUser = {
+      // _id: req.body._id,
+      username: req.body.email,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: findUser.password,
+    };
+    res.send("user edited")
+
+    await UserModel.findOneAndUpdate({ _id: req.body._id }, editedUser)
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 router.get("/getUser", rejectUnauthenticated, async (req, res) => {
   try {
     const findUser = await UserModel.findOne({ email: req.user.email });
