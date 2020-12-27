@@ -23,8 +23,9 @@ const SignIn = (props) => {
       .then(function (response) {
         setBadTry("none");
         if (response.data) {
+          props.onSignedIn(response.data)
           history.push('/')
-          window.location.reload(false)
+          // window.location.reload(false) //hacky way to have loggedIn === true on App.js
         }
       })
       .catch(function (error) {

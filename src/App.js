@@ -5,14 +5,14 @@ import SignUp from "./components/signup.js";
 import SignIn from "./components/signin.js";
 import DisplayAlbums from "./components/displayalbums.js";
 import DisplayPoll from "./components/displaypoll.js";
-import Profile from "./components/profile.js";
+import Account from "./components/account.js";
 import { useEffect, useState } from "react";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
 
-//when signed in change Sign Up to be Profile and Sign In to be Log Out
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);  //needs a refresh to work, happens in signin.js at line 27, kinda hacky - change later
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     axios
@@ -20,21 +20,18 @@ function App() {
       .then(function (response) {
         console.log(response);
         setLoggedIn(true);
+        setName(response.data.firstname);
       })
       .catch(function (error) {
         console.error(error);
       });
   }, []);
 
-  const logOut = () => {
-    axios
-      .get("http://localhost:5000/api/users/logout")
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  const signedIn = (data) => {
+    if (data) {
+      setLoggedIn(true);
+      setName(data.firstname);
+    }
   };
 
   return (
@@ -52,21 +49,18 @@ function App() {
               <Link to="/poll">Polls</Link>
             </li>
             <li>
-            <Link to="/signup">Sign Up</Link> 
-            {/* commented out below, not working yet */}
-              {/* {loggedIn === true ? (
-                <Link to="/profile">Profile</Link>
+              {loggedIn === true ? (
+                <Link to="/account">Account</Link>
               ) : (
                 <Link to="/signup">Sign Up</Link>
-              )} */}
+              )}
             </li>
             <li>
-            <Link to="/signin">Sign In</Link>
-              {/* {loggedIn === true ? (
-                <button onClick={() => logOut()}>Log Out</button>
+              {loggedIn === true ? (
+                <span>Hello, {name}</span>
               ) : (
                 <Link to="/signin">Sign In</Link>
-              )} */}
+              )}
             </li>
           </ul>
         </nav>
@@ -79,13 +73,13 @@ function App() {
             <SignUp />
           </Route>
           <Route path="/signin">
-            <SignIn />
+            <SignIn onSignedIn={signedIn} />
           </Route>
           <Route path="/albums">
             <DisplayAlbums />
           </Route>
-          <Route path="/profile">
-            <Profile />
+          <Route path="/account">
+            <Account />
           </Route>
           <Route path="/">
             <HomePage />

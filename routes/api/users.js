@@ -65,7 +65,7 @@ router.get("/logout", function (req, res) {
 router.get("/check", rejectUnauthenticated, function (req, res) {
   // console.log(req.user);
   if (req.user) {
-    res.send("logged in");
+    res.send(req.user);
   }
 });
 

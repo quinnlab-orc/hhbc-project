@@ -1,20 +1,8 @@
 import { useEffect, useState } from "react";
 const axios = require("axios");
 
-const Profile = () => {
+const Account = () => {
   const [profileInfo, setProfileInfo] = useState({});
-  //     const timestamp = Date.now()
-  // //   console.log(Date.now());
-  //   console.log(
-  //     new Intl.DateTimeFormat("en-US", {
-  //       year: "numeric",
-  //       month: "2-digit",
-  //       day: "2-digit",
-  //       hour: "2-digit",
-  //       minute: "2-digit",
-  //       second: "2-digit",
-  //     }).format(timestamp)
-  //   );
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/users/getUser")
@@ -58,4 +46,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Account;
