@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react";
 const axios = require("axios");
 
-const Account = () => {
+const Account = (props) => {
   const [profileInfo, setProfileInfo] = useState({});
+
+  console.log(props.onLoggedIn);
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/users/getUser")
-      .then(function (response) {
-        // console.log(response);
-        if (response.data.email) {
-          setProfileInfo({
-            email: response.data.email,
-            firstname: response.data.firstname,
-            lastname: response.data.lastname,
-          });
-        }
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    if (props.onLoggedIn.firstname) {
+      setProfileInfo(props.onLoggedIn);
+    }
   }, []);
 
   const logOut = () => {

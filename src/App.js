@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [name, setName] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     axios
@@ -20,7 +20,7 @@ function App() {
       .then(function (response) {
         console.log(response);
         setLoggedIn(true);
-        setName(response.data.firstname);
+        setUser(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -30,7 +30,7 @@ function App() {
   const signedIn = (data) => {
     if (data) {
       setLoggedIn(true);
-      setName(data.firstname);
+      setUser(data);
     }
   };
 
@@ -57,7 +57,7 @@ function App() {
             </li>
             <li>
               {loggedIn === true ? (
-                <span>Hello, {name}</span>
+                <span>Hello, {user.firstname}</span>
               ) : (
                 <Link to="/signin">Sign In</Link>
               )}
@@ -79,7 +79,7 @@ function App() {
             <DisplayAlbums />
           </Route>
           <Route path="/account">
-            <Account />
+            <Account onLoggedIn={user}/>
           </Route>
           <Route path="/">
             <HomePage />
