@@ -139,6 +139,28 @@ ul {
   width: 30%;
 }
 
+.profileEdit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  height: 100px;
+  width: 30%;
+}
+
+.editInput {
+  width: 75%;
+}
+
+.editInputButton {
+  width: 60px;
+}
+
 .profileinfo {
   margin-left: 10px;
 }
