@@ -21,6 +21,12 @@ const PasswordReset = () => {
       .post("/api/users/forgotPass", userEmail)
       .then(function (response) {
         // console.log(response);
+        if ((response.data = "recovery email sent")) {
+          Swal.fire({
+            title: "Recovery email sent",
+            timer: 2000,
+          });
+        }
         if (response.data === "No matching email in database") {
           Swal.fire({
             title: "No matching email in database",
@@ -36,9 +42,12 @@ const PasswordReset = () => {
 
   return (
     <div className="pwresetEmail">
-        <span>Enter your email and hit submit. You will receive an email with a link to reset your password shortly.</span>
+      <span>
+        Enter your email and hit submit. You will receive an email with a link
+        to reset your password shortly.
+      </span>
       <form onSubmit={(e) => handleSubmit(e)}>
-          <br />
+        <br />
         <input
           type="email"
           placeholder="Email"
