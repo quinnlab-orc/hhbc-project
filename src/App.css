@@ -204,3 +204,55 @@ ul {
   margin-bottom: 5px;
   width: 50px;
 }
+
+.pwresetEmail {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  border: 2px solid black;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 100px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+}
+
+.newpwDiv {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  border: 2px solid black;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 200px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+}
+
+.newpwForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newpwInput {
+  width: 75%;
+  margin: auto;
+}
+
+.forgotpwLink {
+  font-size: small;
+}
+.forgotpwLink:hover {
+  color: purple;
+}
+
+.signinLinks {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  align-items: center;
+}

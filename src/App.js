@@ -6,6 +6,8 @@ import SignIn from "./components/signin.js";
 import DisplayAlbums from "./components/displayalbums.js";
 import DisplayPoll from "./components/displaypoll.js";
 import Account from "./components/account.js";
+import PasswordReset from "./components/passwordreset.js";
+import SetNewPassword from "./components/setnewpassword.js";
 import { useEffect, useState } from "react";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -62,10 +64,22 @@ function App() {
                 <Link to="/signin">Sign In</Link>
               )}
             </li>
+            <li style={{ display: "none" }}>
+              <Link to="/passwordreset"></Link>
+            </li>
+            <li style={{ display: "none" }}>
+              <Link to="/setnewpassword"></Link>
+            </li>
           </ul>
         </nav>
 
         <Switch>
+        <Route path="/setnewpassword">
+            <SetNewPassword />
+          </Route>
+          <Route path="/passwordreset">
+            <PasswordReset />
+          </Route>
           <Route path="/poll">
             <DisplayPoll />
           </Route>
@@ -79,7 +93,7 @@ function App() {
             <DisplayAlbums />
           </Route>
           <Route path="/account">
-            <Account onLoggedIn={user}/>
+            <Account onLoggedIn={user} />
           </Route>
           <Route path="/">
             <HomePage />

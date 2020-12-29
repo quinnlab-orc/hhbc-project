@@ -19,7 +19,6 @@ const SignUp = () => {
     axios
       .post("/api/users/", newUser)
       .then(function (response) {
-        console.log(response);
         if (response.data === "Email already in use") {
           Swal.fire({
             title: "Email is already in use.",
@@ -96,6 +95,8 @@ const SignUp = () => {
             })
           }
         ></input>
+        <br />
+        <br />
         <button type="submit">Sign up</button>
       </form>
     </div>

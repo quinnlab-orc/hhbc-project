@@ -8,6 +8,7 @@ const Votes = require("../../schemas/Votes"); //schemas
 const UserAlbum = require("../../schemas/userAlbum"); //schemas
 const { route } = require("./votes.js");
 const rejectUnauthenticated = require("../../modules/rejectUnauth.js");
+const nodemailer = require("nodemailer");
 
 router.post(
   //makes new User
@@ -44,6 +45,69 @@ router.post(
   }
 );
 
+router.post("/resetPassword", async (req, res) => {
+  try {
+    let findUser = await UserModel.findOne({
+      email: req.body.email,
+    });
+    if (!findUser) {
+      res.send("No matching email in database");
+    }
+    const saltRounds = 10;
+    await bcrypt.genSalt(saltRounds, function (err, salt) {
+      bcrypt.hash(req.body.pass, salt, function (err, hash) {
+        findUser.password = hash;
+        findUser.save();
+        res.send("New password set");
+      });
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+router.post("/forgotPass", async (req, res) => {
+  try {
+    const findUser = await UserModel.findOne({
+      email: req.body.email,
+    });
+
+    if (!findUser) {
+      res.send("No matching email in database");
+    }
+    if (findUser) {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: `${process.env.EMAIL_ADDRESS}`,
+          pass: `${process.env.EMAIL_PASSWORD}`,
+        },
+      });
+
+      const emailContent = {
+        from: "hiphopbookclubpwreset@gmail.com",
+        to: `${findUser.email}`,
+        subject: "Password Reset Link",
+        text:
+          "You have requested the reset of the password for your account.\n\n" +
+          "Click the following link to reset your password:\n\n" +
+          "http://localhost:3000/setnewpassword", //change this before pushing to production!!!!
+      };
+
+      transporter.sendMail(emailContent, (err, response) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(response);
+          res.status(200).json("recovery email sent");
+        }
+      });
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 router.post("/editUser", async function (req, res) {
   //edits existing user information
   try {
@@ -58,9 +122,9 @@ router.post("/editUser", async function (req, res) {
       email: req.body.email,
       password: findUser.password,
     };
-    res.send("user edited")
+    res.send("user edited");
 
-    await UserModel.findOneAndUpdate({ _id: req.body._id }, editedUser)
+    await UserModel.findOneAndUpdate({ _id: req.body._id }, editedUser);
   } catch (err) {
     console.error(err.message);
   }

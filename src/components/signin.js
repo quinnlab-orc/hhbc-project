@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 const axios = require("axios");
-
 
 const SignIn = (props) => {
   const initialUserState = {
@@ -11,7 +9,7 @@ const SignIn = (props) => {
     password: "",
   };
   const [signIn, setSignIn] = useState(initialUserState);
-  const [badTry, setBadTry] = useState("none");
+  const [badTry, setBadTry] = useState("hidden");
 
   const history = useHistory();
 
@@ -21,16 +19,14 @@ const SignIn = (props) => {
     axios
       .post("/api/users/login", signIn)
       .then(function (response) {
-        setBadTry("none");
+        setBadTry("visible");
         if (response.data) {
-          props.onSignedIn(response.data)
-          history.push('/')
-          // window.location.reload(false) //hacky way to have loggedIn === true on App.js
+          props.onSignedIn(response.data);
+          history.push("/");
         }
       })
       .catch(function (error) {
-        // console.error(error);
-        setBadTry("block");
+        setBadTry("visible");
       });
   };
 
@@ -60,14 +56,22 @@ const SignIn = (props) => {
             }
           ></input>
 
-          <span className="badTry" style={{ display: badTry }}>
+          <span className="badTry" style={{ visibility: badTry }}>
             Incorrect username or password.
           </span>
-          <button type="submit">Submit</button>
+          <div className="signinLinks">
+            <span
+              onClick={() => history.push("/passwordreset")}
+              className="forgotpwLink"
+            >
+              Forgot password?
+            </span>
+            <button type="submit">Submit</button>
+          </div>
         </form>
-        {/* <button className="signupbutton" onClick={() => handleSubmit()}>
-          Sign In
-        </button> */}
+        {/* <span onClick={() => history.push("/passwordreset")} className="forgotpwLink">
+          Forgot password?
+        </span> */}
       </div>
     </div>
   );
