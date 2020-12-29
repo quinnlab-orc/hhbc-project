@@ -91,7 +91,7 @@ router.post("/forgotPass", async (req, res) => {
         text:
           "You have requested the reset of the password for your account.\n\n" +
           "Click the following link to reset your password:\n\n" +
-          "http://localhost:3000/setnewpassword", //change this before pushing to production!!!!
+          "https://hiphopbookclub.herokuapp.com/setnewpassword", //change this before pushing to production!!!!
       };
 
       transporter.sendMail(emailContent, (err, response) => {
