@@ -130,6 +130,7 @@
 
 .profileinfo {
   margin-left: 10px;
+  color: gold;
 }
 
 .profileEdit {
@@ -212,6 +213,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 15%;
+  color: gold;
 }
 
 .newpwDiv {
@@ -225,6 +227,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 15%;
+  color: gold;
 }
 
 .newpwForm {
