@@ -1,5 +1,5 @@
 :root {
-  --black: rgba(0, 0, 0, 0.9);
+  --black: rgb(0, 0, 0);
   --blue: rgb(15, 59, 192);
   --border: 2px solid black;
   --border-radius: 20px;
