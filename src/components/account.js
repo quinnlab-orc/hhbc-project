@@ -25,7 +25,7 @@ const Account = (props) => {
   const logOut = () => {
     axios
       .get("/api/users/logout")
-      .then(function (response) {})
+      .then(function () {})
       .catch(function (error) {
         console.error(error);
       });
@@ -76,6 +76,12 @@ const Account = (props) => {
               <span className="profileinfo">Name: {profileInfo.firstname}</span>
               <span className="profileinfo">Last: {profileInfo.lastname}</span>
               <span className="profileinfo">Email: {profileInfo.email}</span>
+              <div className="accountBtns">
+                <form onSubmit={() => logOut()}>
+                  <button type="submit">Log Out</button>
+                </form>
+                <button onClick={() => editAccount()}>Edit</button>
+              </div>
             </div>
             <div>
               <form onSubmit={(e) => handleSubmit(e)} className="profileEdit">
@@ -128,20 +134,18 @@ const Account = (props) => {
             </div>
           </div>
         ) : (
-          <div>
-            <div className="profile">
-              <span className="profileinfo">Name: {profileInfo.firstname}</span>
-              <span className="profileinfo">Last: {profileInfo.lastname}</span>
-              <span className="profileinfo">Email: {profileInfo.email}</span>
+          <div className="profile">
+            <span className="profileinfo">Name: {profileInfo.firstname}</span>
+            <span className="profileinfo">Last: {profileInfo.lastname}</span>
+            <span className="profileinfo">Email: {profileInfo.email}</span>
+            <div className="accountBtns">
+              <form onSubmit={() => logOut()}>
+                <button type="submit">Log Out</button>
+              </form>
+              <button onClick={() => editAccount()}>Edit</button>
             </div>
           </div>
         )}
-      </div>
-      <div className="accountBtns">
-        <form onSubmit={() => logOut()}>
-          <button type="submit">Log Out</button>
-        </form>
-        <button onClick={() => editAccount()}>Edit</button>
       </div>
     </div>
   );

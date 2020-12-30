@@ -1,10 +1,3 @@
-add account creation confirmation popup
-success login redirect to home page
-mobile formatting
-
-
-
-
 To Do List:
 Sign in and Sign up in form tags so you can press 'enter' - Done
 Sign in forwards user to home page on success - Done
@@ -13,4 +6,4 @@ Allow users to edit name/email/account from the profile page - Done
 Forgot Password button - Done
 Better styling for header
 mobile styling and responsiveness
-Site styling themes, style buttons, inputs, etc
+Site styling themes, style buttons, inputs, etc - Done, subject to change

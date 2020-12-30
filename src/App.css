@@ -1,6 +1,6 @@
 :root {
   --white: rgba(0, 0, 0, 0.9);
-  /* --blue: rgb(0, 187, 22); */
+  --blue: rgb(15, 59, 192);
   --border: 2px solid black;
   --border-radius: 20px;
   --font: Arial, Helvetica, sans-serif;
@@ -62,10 +62,12 @@ span {
 button {
   border-radius: 10px;
   color: gold;
-  background-color: rgb(15, 59, 192);
+  background-color: var(--blue);
   font-family: var(--font);
   border: 1px solid gold;
   outline: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 button:hover {
   background-color: rgb(59, 101, 226);
@@ -78,7 +80,7 @@ button:active {
 /* button[type="submit"] {
   border-radius: 10px;
   color: gold;
-  background-color: rgb(15, 59, 192);
+  background-color: var(--blue);
   font-family: var(--font);
   outline: none;
 }
@@ -237,12 +239,16 @@ ul {
   align-items: flex-start;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 50px;
+  margin-top: 5%;
   border-radius: var(--border-radius);
   border: var(--border);
   background: var(--white);
   height: 100px;
   width: 30%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .profileinfo {
@@ -258,8 +264,11 @@ ul {
   border: var(--border);
   background: var(--white);
   margin: auto;
+  margin-top: 15px;
   width: 30%;
   height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .editInput {
@@ -268,7 +277,12 @@ ul {
 
 .accountBtns {
   display: flex;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+  
+   align-items: center;
+
 }
 
 .pollSelections {
@@ -359,7 +373,8 @@ ul {
 }
 .forgotpwLink:hover {
   display: inline !important;
-  color: purple;
+  background: none;
+  color: red;
 }
 
 .signinLinks {
