@@ -1,119 +1,14 @@
 :root {
-  --white: rgba(0, 0, 0, 0.9);
+  --black: rgba(0, 0, 0, 0.9);
   --blue: rgb(15, 59, 192);
   --border: 2px solid black;
   --border-radius: 20px;
   --font: Arial, Helvetica, sans-serif;
+  --font-size: 16px;
 }
 
 .App {
   text-align: center;
-}
-
-h1 {
-  color: gold;
-  font-family: var(--font);
-}
-
-h2 {
-  color: gold;
-  font-family: var(--font);
-}
-
-h3 {
-  color: gold;
-  font-family: var(--font);
-}
-
-h4 {
-  color: gold;
-  font-family: var(--font);
-}
-
-p {
-  text-decoration: none;
-  color: gold;
-  font-family: var(--font);
-}
-
-label {
-  color: gold;
-  font-family: var(--font);
-}
-
-a {
-  text-decoration: none;
-  font-size: large;
-  color: gold;
-  font-family: var(--font);
-}
-
-a:visited {
-  text-decoration: none;
-  font-size: large;
-  color: gold;
-}
-
-span {
-  color: gold;
-  font-family: var(--font);
-}
-
-button {
-  border-radius: 10px;
-  color: gold;
-  background-color: var(--blue);
-  font-family: var(--font);
-  border: 1px solid gold;
-  outline: none;
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-button:hover {
-  background-color: rgb(59, 101, 226);
-}
-button:active {
-  background-color: rgb(59, 101, 226);
-  transform: translate3d(1px, 1px, 1px);
-}
-
-/* button[type="submit"] {
-  border-radius: 10px;
-  color: gold;
-  background-color: var(--blue);
-  font-family: var(--font);
-  outline: none;
-}
-button[type="submit"]:hover {
-  background-color: rgb(59, 101, 226);
-}
-button[type="submit"]:active {
-  background-color: rgb(59, 101, 226);
-  transform: translate3d(1px, 1px, 1px);
-} */
-
-input[type="email"] {
-  border: 1px solid gold;
-  border-radius: 7px;
-  outline: none;
-  height: 20px;
-  font-family: var(--font);
-}
-
-input[type="password"] {
-  border: 1px solid gold;
-  border-radius: 7px;
-  outline: none;
-  height: 20px;
-  font-family: var(--font);
-}
-
-input[type="text"] {
-  border: 1px solid gold;
-  border-radius: 7px;
-  outline: none;
-  height: 20px;
-  font-family: var(--font);
 }
 
 .links {
@@ -126,7 +21,7 @@ input[type="text"] {
   flex-direction: column;
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--white);
+  background: var(--black);
   height: 275px;
   width: 200px;
   margin-left: auto;
@@ -140,32 +35,17 @@ input[type="text"] {
   margin-top: 5px;
 }
 
-/* .signUp {
-  display: flex;
-  flex-direction: column;
-} */
-
 .signIn {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--white);
+  background: var(--black);
   height: 200px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
-}
-
-ul {
-  list-style: none;
-}
-
-.nav {
-  background: var(--white);
-  border: var(--border);
 }
 
 .albums {
@@ -178,19 +58,17 @@ ul {
   margin-top: 5%;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   width: 50%;
 }
 
 .poll {
-  /* display: flex;
-  flex-direction: column; */
   margin-right: auto;
   margin-left: auto;
   margin-top: 50px;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   width: 60%;
 }
 
@@ -202,7 +80,7 @@ ul {
   margin-top: 50px;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   width: 20%;
 }
 
@@ -214,7 +92,7 @@ ul {
   margin-top: 5%;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   width: 45%;
 }
 
@@ -222,7 +100,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background: var(--white);
+  background: var(--black);
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -235,14 +113,13 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* align-content: ; */
   align-items: flex-start;
   margin-right: auto;
   margin-left: auto;
   margin-top: 5%;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   height: 100px;
   width: 30%;
   padding-left: 5px;
@@ -262,7 +139,7 @@ ul {
   align-items: center;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   margin: auto;
   margin-top: 15px;
   width: 30%;
@@ -280,9 +157,8 @@ ul {
   margin-left: auto;
   margin-right: auto;
   justify-content: space-evenly;
-  
-   align-items: center;
 
+  align-items: center;
 }
 
 .pollSelections {
@@ -314,7 +190,7 @@ ul {
   margin-top: 50px;
   border-radius: var(--border-radius);
   border: var(--border);
-  background: var(--white);
+  background: var(--black);
   height: 125px;
   width: 200px;
 }
@@ -328,10 +204,9 @@ ul {
 .pwresetEmail {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--white);
+  background: var(--black);
   height: 100px;
   width: 400px;
   margin-left: auto;
@@ -342,10 +217,9 @@ ul {
 .newpwDiv {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   border: var(--border);
   border-radius: var(--border-radius);
-  background: var(--white);
+  background: var(--black);
   height: 200px;
   width: 400px;
   margin-left: auto;
@@ -382,4 +256,135 @@ ul {
   justify-content: space-around;
   margin-top: 10px;
   align-items: center;
+}
+
+h1 {
+  color: gold;
+  font-family: var(--font);
+}
+
+h2 {
+  color: gold;
+  font-family: var(--font);
+}
+
+h3 {
+  color: gold;
+  font-family: var(--font);
+}
+
+h4 {
+  color: gold;
+  font-family: var(--font);
+}
+
+p {
+  text-decoration: none;
+  color: gold;
+  font-family: var(--font);
+}
+
+label {
+  color: gold;
+  font-family: var(--font);
+}
+
+button {
+  border-radius: 10px;
+  color: gold;
+  background-color: var(--blue);
+  font-family: var(--font);
+  border: 1px solid gold;
+  outline: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+button:hover {
+  background-color: rgb(59, 101, 226);
+}
+button:active {
+  background-color: rgb(59, 101, 226);
+  transform: translate3d(1px, 1px, 1px);
+}
+
+input[type="email"] {
+  border: 1px solid gold;
+  border-radius: 7px;
+  outline: none;
+  height: 20px;
+  font-family: var(--font);
+}
+
+input[type="password"] {
+  border: 1px solid gold;
+  border-radius: 7px;
+  outline: none;
+  height: 20px;
+  font-family: var(--font);
+}
+
+input[type="text"] {
+  border: 1px solid gold;
+  border-radius: 7px;
+  outline: none;
+  height: 20px;
+  font-family: var(--font);
+}
+
+/* navbar stuff here */
+.navbar {
+  background: black;
+  height: 50px;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-left: 50px;
+  height: 45px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  border: var(--border);
+  color: gold;
+  text-decoration: none;
+}
+
+.nav-link--active {
+  background: gold;
+  color: black;
+  border: var(--border);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.nav-link:hover {
+  background: gold;
+  color: black;
+  border: var(--border);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.link-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 50px;
+}
+
+.user-greeting {
+  color: gold;
+}
+
+li:last-child {
+  margin-left: auto;
+  margin-right: 50px;
 }

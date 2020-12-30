@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import HomePage from "./components/homepage.js";
 import SignUp from "./components/signup.js";
 import SignIn from "./components/signin.js";
@@ -39,42 +44,77 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav className="nav">
-          <ul className="links">
-            <li>
-              <Link to="/">Home</Link>
+        <nav className="navbar">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink
+                to="/"
+                exact={true}
+                activeClassName="nav-link--active"
+                className="nav-link"
+              >
+                <span className="link-text">Home</span>
+              </NavLink>
             </li>
-            <li>
-              <Link to="/albums">Albums</Link>
+
+            <li className="nav-item">
+              <NavLink
+                to="/albums"
+                activeClassName="nav-link--active"
+                className="nav-link"
+              >
+                <span className="link-text">Albums</span>
+              </NavLink>
             </li>
-            <li>
-              <Link to="/poll">Polls</Link>
+
+            <li className="nav-item">
+              <NavLink
+                to="/poll"
+                activeClassName="nav-link--active"
+                className="nav-link"
+              >
+                <span className="link-text">Polls</span>
+              </NavLink>
             </li>
-            <li>
+
+            <li className="nav-item">
               {loggedIn === true ? (
-                <Link to="/account">Account</Link>
+                <NavLink
+                  to="/account"
+                  activeClassName="nav-link--active"
+                  className="nav-link"
+                >
+                  <span className="link-text">Account</span>
+                </NavLink>
               ) : (
-                <Link to="/signup">Sign Up</Link>
+                <NavLink
+                  to="/signup"
+                  activeClassName="nav-link--active"
+                  className="nav-link"
+                >
+                  <span className="link-text">Sign Up</span>
+                </NavLink>
               )}
             </li>
-            <li>
+
+            <li className="nav-item">
               {loggedIn === true ? (
-                <span style={{ fontSize: "large" }}>Hello, {user.firstname}</span>
+                <span className="user-greeting">Hello, {user.firstname}</span>
               ) : (
-                <Link to="/signin">Sign In</Link>
+                <NavLink
+                  to="/signin"
+                  activeClassName="nav-link--active"
+                  className="nav-link"
+                >
+                  <span className="link-text">Sign In</span>
+                </NavLink>
               )}
-            </li>
-            <li style={{ display: "none" }}>
-              <Link to="/passwordreset"></Link>
-            </li>
-            <li style={{ display: "none" }}>
-              <Link to="/setnewpassword"></Link>
             </li>
           </ul>
         </nav>
 
         <Switch>
-        <Route path="/setnewpassword">
+          <Route path="/setnewpassword">
             <SetNewPassword />
           </Route>
           <Route path="/passwordreset">
