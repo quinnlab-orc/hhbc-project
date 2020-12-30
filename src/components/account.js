@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 const axios = require("axios");
 
 const Account = (props) => {
   const [profileInfo, setProfileInfo] = useState({});
   const [isEdit, setIsEdit] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (props.onLoggedIn.firstname) {
       setProfileInfo(props.onLoggedIn);
+    } else {
+      history.push('/')
     }
   }, []);
 
@@ -22,10 +26,12 @@ const Account = (props) => {
       });
   }, []);
 
-  const logOut = () => {
+  const logOut = (e) => {
+    // e.preventDefault();
     axios
       .get("/api/users/logout")
-      .then(function () {})
+      .then(function () {
+        history.push('/')})
       .catch(function (error) {
         console.error(error);
       });
@@ -77,7 +83,7 @@ const Account = (props) => {
               <span className="profileinfo">Last: {profileInfo.lastname}</span>
               <span className="profileinfo">Email: {profileInfo.email}</span>
               <div className="accountBtns">
-                <form onSubmit={() => logOut()}>
+                <form onSubmit={(e) => logOut(e)}>
                   <button type="submit">Log Out</button>
                 </form>
                 <button onClick={() => editAccount()}>Edit</button>
