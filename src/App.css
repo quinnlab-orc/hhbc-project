@@ -1,7 +1,7 @@
 :root {
   --black: rgb(0, 0, 0);
   --blue: rgb(15, 59, 192);
-  --border: 2px solid black;
+  --border: 2px solid gold;
   --border-radius: 20px;
   --font: Arial, Helvetica, sans-serif;
   --font-size: 16px;
@@ -17,16 +17,26 @@
 }
 
 .signUpDiv {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; */
   border: var(--border);
   border-radius: var(--border-radius);
   background: var(--black);
-  height: 275px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
+  color: gold;
+}
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gold;
 }
 .signupbutton {
   width: 75px;
@@ -355,6 +365,8 @@ input[type="text"] {
   display: flex;
   align-items: center;
   border: var(--border);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   color: gold;
   text-decoration: none;
 }

@@ -52,7 +52,7 @@ const SignUp = () => {
     <div className="signUpDiv">
       <p style={{ fontWeight: "bold", fontSize: "large" }}>Sign Up</p>
       <form className="signUp" onSubmit={(e) => handleSubmit(e)}>
-        <label>First Name</label>
+        <span>First Name</span>
         <input
           type="text"
           placeholder="First Name"
@@ -65,8 +65,7 @@ const SignUp = () => {
             })
           }
         ></input>
-        <br />
-        <label>Last Name</label>
+        <span>Last Name</span>
         <input
           type="text"
           placeholder="Last Name"
@@ -79,8 +78,7 @@ const SignUp = () => {
             })
           }
         ></input>
-        <br />
-        <label>Email</label>
+        <span>Email</span>
         <input
           type="email"
           placeholder="Email"
@@ -93,8 +91,7 @@ const SignUp = () => {
             })
           }
         ></input>
-        <br />
-        <label>Password</label>
+        <span>Password</span>
         <input
           type="password"
           placeholder="Password"
