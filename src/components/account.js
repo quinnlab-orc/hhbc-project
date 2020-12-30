@@ -83,6 +83,7 @@ const Account = (props) => {
                   className="editInput"
                   placeholder="Name"
                   defaultValue={profileInfo.firstname}
+                  type="text"
                   onChange={(event) => {
                     setEditedAccount({
                       _id: props.onLoggedIn._id,
@@ -96,6 +97,7 @@ const Account = (props) => {
                   className="editInput"
                   placeholder="Last"
                   defaultValue={profileInfo.lastname}
+                  type="text"
                   onChange={(event) => {
                     setEditedAccount({
                       _id: props.onLoggedIn._id,

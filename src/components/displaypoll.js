@@ -93,7 +93,8 @@ const DisplayPoll = () => {
   }, []);
 
   const [selectedAlbum, setSelectedAlbum] = useState([false, false, false]);
-  const sendVotes = () => {
+  const sendVotes = (e) => {
+    e.preventDefault();
     let voteInfo = {};
 
     if (selectedAlbum[0] === true) {
@@ -135,7 +136,7 @@ const DisplayPoll = () => {
       </div>
 
       <div className="poll">
-        <form>
+        <form onSubmit={(e) => sendVotes(e)}>
           <div className="pollSelections">
             <div className="voteHolder">
               <h3>{albumState[0].title}</h3>
@@ -186,11 +187,13 @@ const DisplayPoll = () => {
               </p>
             </div>
           </div>
-          {/* <button onClick={() => sendVotes()}>Submit</button> */}
-        </form>
-        <button className="voteButton" onClick={() => sendVotes()}>
+          <button className="voteButton" type="submit">
           Submit
         </button>
+        </form>
+        {/* <button className="voteButton" onClick={() => sendVotes()}>
+          Submit
+        </button> */}
       </div>
       <div style={{ display: adminVis }}>
         <button onClick={ChooseNewAlbums}>New Albums</button>

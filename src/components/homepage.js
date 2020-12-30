@@ -48,7 +48,7 @@ const HomePage = () => {
   });
 
   const sendUserAlbum = () => {
-    setUserChoiceVis("none")
+    setUserChoiceVis("none");
     axios
       .post("/api/users/useralbum", userAlbum)
       .then(function (response) {
@@ -60,9 +60,9 @@ const HomePage = () => {
           Swal.fire({
             title: "You need to log in to do that!",
             icon: "error",
-            timer: 4000
-          })
-        } 
+            timer: 4000,
+          });
+        }
       });
 
     getUserAlbum();
@@ -72,10 +72,6 @@ const HomePage = () => {
     <div>
       <div className="Homepage">
         <h1>Welcome{name} to the Hip-Hop Book Club home page!</h1>
-        <p>
-          Here we can check on all the albums in the list and vote on what album
-          will be chosen for the next week.
-        </p>
         <div>
           <h3>This week's album is: Black Album - Jay Z</h3>
         </div>
@@ -86,11 +82,16 @@ const HomePage = () => {
           </h3>
         </div>
         <p>If it is your week to choose an album, click the button below!</p>
-        <button className="buttonHomePage" onClick={() => setUserChoiceVis("block")}>Click</button>
+        <button
+          className="buttonHomePage"
+          onClick={() => setUserChoiceVis("block")}
+        >
+          Click
+        </button>
       </div>
 
       <div className="userChoice" style={{ display: userChoiceVis }}>
-        <form>
+        <form onSubmit={() => sendUserAlbum()}>
           <label>Album:</label>
           <input
             type="text"
@@ -113,8 +114,9 @@ const HomePage = () => {
               })
             }
           ></input>
+
+          <button type="submit">Submit</button>
         </form>
-        <button onClick={() => sendUserAlbum()}>Submit</button>
       </div>
     </div>
   );

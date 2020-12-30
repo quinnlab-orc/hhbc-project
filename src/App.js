@@ -59,7 +59,7 @@ function App() {
             </li>
             <li>
               {loggedIn === true ? (
-                <span>Hello, {user.firstname}</span>
+                <span style={{ fontSize: "large" }}>Hello, {user.firstname}</span>
               ) : (
                 <Link to="/signin">Sign In</Link>
               )}

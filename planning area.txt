@@ -10,7 +10,7 @@ Sign in and Sign up in form tags so you can press 'enter' - Done
 Sign in forwards user to home page on success - Done
 Sign up and Sign in replaced with Account and Log Out in nav bar when signed in - Done
 Allow users to edit name/email/account from the profile page - Done
-Forgot Password button
+Forgot Password button - Done
 Better styling for header
 mobile styling and responsiveness
 Site styling themes, style buttons, inputs, etc

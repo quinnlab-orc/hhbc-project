@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
 const axios = require("axios");
 
 const SignIn = (props) => {
@@ -60,18 +59,16 @@ const SignIn = (props) => {
             Incorrect username or password.
           </span>
           <div className="signinLinks">
-            <span
+            <button
               onClick={() => history.push("/passwordreset")}
+              type="button"
               className="forgotpwLink"
             >
               Forgot password?
-            </span>
+            </button>
             <button type="submit">Submit</button>
           </div>
         </form>
-        {/* <span onClick={() => history.push("/passwordreset")} className="forgotpwLink">
-          Forgot password?
-        </span> */}
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const SetNewPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userInfo.pass != passConfirm.pass) {
+    if (userInfo.pass !== passConfirm.pass) {
       Swal.fire({
         title: "Passwords do not match",
         icon: "warning",

@@ -16,6 +16,15 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (newUser.firstname === '' || newUser.lastname === '' || newUser.email === '' || newUser.password === '') {
+      Swal.fire({
+        title: "Please fill in all fields before submitting",
+        icon: "warning",
+        timer: 2000,
+      })
+      return;
+    }
+
     axios
       .post("/api/users/", newUser)
       .then(function (response) {
@@ -56,6 +65,7 @@ const SignUp = () => {
             })
           }
         ></input>
+        <br />
         <label>Last Name</label>
         <input
           type="text"
@@ -69,6 +79,7 @@ const SignUp = () => {
             })
           }
         ></input>
+        <br />
         <label>Email</label>
         <input
           type="email"
@@ -82,6 +93,7 @@ const SignUp = () => {
             })
           }
         ></input>
+        <br />
         <label>Password</label>
         <input
           type="password"
