@@ -195,7 +195,7 @@
 .userChoice {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
   margin-right: auto;
   margin-left: auto;
   margin-top: 50px;
@@ -204,6 +204,10 @@
   background: var(--black);
   height: 125px;
   width: 200px;
+}
+
+.userChoice button {
+  margin-top: 7px;
 }
 
 .buttonHomePage {
