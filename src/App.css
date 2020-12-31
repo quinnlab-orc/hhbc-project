@@ -346,11 +346,13 @@ input[type="text"] {
 
 /* navbar stuff here */
 .navbar {
+  visibility: hidden;
   background: black;
   height: 50px;
 }
 
 .navbar-nav {
+  visibility: visible;
   list-style: none;
   display: flex;
   justify-content: flex-start;
@@ -365,6 +367,7 @@ input[type="text"] {
   display: flex;
   align-items: center;
   border: var(--border);
+  background: black;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   color: gold;
@@ -374,7 +377,7 @@ input[type="text"] {
 .nav-link--active {
   background: gold;
   color: black;
-  border: var(--border);
+  border: 2px solid black;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -382,7 +385,7 @@ input[type="text"] {
 .nav-link:hover {
   background: gold;
   color: black;
-  border: var(--border);
+  border: 2px solid black;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
