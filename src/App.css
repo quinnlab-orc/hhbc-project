@@ -403,7 +403,18 @@ input[type="text"] {
 }
 
 .user-greeting {
-  color: gold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  background: gold;
+  color: black;
+  border: 2px solid black;
+  margin: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 li:last-child {

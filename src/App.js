@@ -99,7 +99,7 @@ function App() {
 
             <li className="nav-item">
               {loggedIn === true ? (
-                <span className="user-greeting">Hello, {user.firstname}</span>
+                  <span className="user-greeting">Hello, {user.firstname}</span>
               ) : (
                 <NavLink
                   to="/signin"
