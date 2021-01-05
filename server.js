@@ -6,18 +6,13 @@ const AuthPassport = require("./modules/passport.js");
 const connectDB = require("./config/db");
 const userRoute = require("./routes/api/users");
 const voteRoute = require("./routes/api/votes");
-// const CronJob = require('cron').CronJob;
+const spotifyRoute = require("./routes/api/spotify")
 const { join } = require("path");
 
 // Connect database
 connectDB();
 
 const app = express();
-
-// var job = new CronJob('* * * * * *', function() {
-//   console.log('You will see this message every second');
-// }, null, true, 'America/Los_Angeles');
-// job.start();
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -35,6 +30,10 @@ app.use(AuthPassport.session());
 
 app.use("/api/users", userRoute);
 app.use("/api/votes", voteRoute);
+app.use("/api/spotify", spotifyRoute);
+app.get('/callback', function(req, res) {
+  console.log("callback hit")
+})
 
 // serve react app build
 app.use(express.static(path.join(__dirname, 'build')));

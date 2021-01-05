@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+// import Button from "@material-ui/core/Button";
 const axios = require("axios");
 
 const HomePage = () => {
@@ -81,6 +82,7 @@ const HomePage = () => {
             - {userAlbumInDB.artist}
           </h3>
         </div>
+
         <p>If it is your week to choose an album, click the button below!</p>
         <button
           className="buttonHomePage"

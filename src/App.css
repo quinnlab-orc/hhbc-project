@@ -17,10 +17,6 @@
 }
 
 .signUpDiv {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; */
   border: var(--border);
   border-radius: var(--border-radius);
   background: var(--black);
@@ -403,7 +399,6 @@ input[type="text"] {
 }
 
 .user-greeting {
-
   display: flex;
   justify-content: center;
   align-items: center;

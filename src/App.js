@@ -13,6 +13,7 @@ import DisplayPoll from "./components/displaypoll.js";
 import Account from "./components/account.js";
 import PasswordReset from "./components/passwordreset.js";
 import SetNewPassword from "./components/setnewpassword.js";
+import Spotify from "./components/spotify.js";
 import { useEffect, useState } from "react";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -97,6 +98,17 @@ function App() {
               )}
             </li>
 
+                {/* temporary link for spotify api testing */}
+            <li className="nav-item"> 
+              <NavLink
+                to="/spotify"
+                activeClassName="nav-link--active"
+                className="nav-link"
+              >
+                <span className="link-text">Spotify</span>
+              </NavLink>
+            </li>
+
             <li className="nav-item">
               {loggedIn === true ? (
                   <span className="user-greeting">Hello, {user.firstname}</span>
@@ -114,6 +126,10 @@ function App() {
         </nav>
 
         <Switch>
+          {/* temporary for spotify api tests */}
+        <Route path="/spotify">
+            <Spotify />
+          </Route>
           <Route path="/setnewpassword">
             <SetNewPassword />
           </Route>

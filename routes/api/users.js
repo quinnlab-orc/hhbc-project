@@ -4,9 +4,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const AuthPassport = require("../../modules/passport.js");
 const UserModel = require("../../schemas/Users"); //schemas
-const Votes = require("../../schemas/Votes"); //schemas
 const UserAlbum = require("../../schemas/userAlbum"); //schemas
-const { route } = require("./votes.js");
 const rejectUnauthenticated = require("../../modules/rejectUnauth.js");
 const nodemailer = require("nodemailer");
 
