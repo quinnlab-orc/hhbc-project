@@ -17,18 +17,7 @@ const Spotify = () => {
     .catch(function (error) {
         console.error(error)
     })
-
   };
-
-  const getAuth = () => {
-    axios.get("/api/spotify/login")
-    .then(function (response) {
-        console.log(response)
-    })
-    .catch(function (error) {
-        console.error(error)
-    })
-  }
 
   return (
     <div className="signUpDiv">
@@ -51,7 +40,6 @@ const Spotify = () => {
           }></input>
         <button type="submit">Submit</button>
       </form>
-      <button onClick={() => getAuth()}>Get Auth Token</button>
       <img src={albumCover} alt="album cover"></img>
     </div>
   );

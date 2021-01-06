@@ -99,7 +99,7 @@ function App() {
             </li>
 
                 {/* temporary link for spotify api testing */}
-            <li className="nav-item"> 
+            {/* <li className="nav-item"> 
               <NavLink
                 to="/spotify"
                 activeClassName="nav-link--active"
@@ -107,7 +107,7 @@ function App() {
               >
                 <span className="link-text">Spotify</span>
               </NavLink>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               {loggedIn === true ? (
@@ -126,10 +126,10 @@ function App() {
         </nav>
 
         <Switch>
-          {/* temporary for spotify api tests */}
-        <Route path="/spotify">
+          {/* temporary for spotify api testing */}
+        {/* <Route path="/spotify">
             <Spotify />
-          </Route>
+          </Route> */}
           <Route path="/setnewpassword">
             <SetNewPassword />
           </Route>

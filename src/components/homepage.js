@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+
+import noAlbumArt from "./defaultnoalbum.jpg";
 // import Button from "@material-ui/core/Button";
 const axios = require("axios");
 
@@ -11,6 +13,8 @@ const HomePage = () => {
     album: "",
     artist: "",
   });
+  const [userAlbumArt, setUserAlbumArt] = useState(noAlbumArt);
+  console.log(userAlbumArt);
 
   const getUserAlbum = () => {
     axios
@@ -41,6 +45,17 @@ const HomePage = () => {
     getUserAlbum();
   }, []);
 
+  useEffect(() => {
+    axios.get("/api/spotify/getalbumart").then(function (response) {
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].album === userAlbumInDB.album) {
+          // console.log(response.data[i].album);
+          setUserAlbumArt(response.data[i].albumUrl);
+        }
+      }
+    });
+  }, [userAlbumInDB]);
+
   const [userChoiceVis, setUserChoiceVis] = useState("none");
   const [userAlbum, setUserAlbum] = useState({
     artist: "",
@@ -66,6 +81,20 @@ const HomePage = () => {
         }
       });
 
+    const albumSearchReformat = {
+      artist: userAlbum.artist,
+      album: userAlbum.album,
+    };
+
+    axios // sends the user album choice to find the album artwork
+      .post("/api/users/albumsearch", albumSearchReformat)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+
     getUserAlbum();
   };
 
@@ -77,9 +106,14 @@ const HomePage = () => {
           <h3>This week's album is: Licensed to Ill - Beastie Boys</h3>
         </div>
         <div>
+          <h3>{userAlbumInDB.user}'s album for the week is:</h3>
+          <img
+            src={userAlbumArt}
+            alt={`album art for ${userAlbumInDB.album}`}
+            className="albumArtHomePage"
+          ></img>
           <h3>
-            {userAlbumInDB.user}'s album for the week is: {userAlbumInDB.album}{" "}
-            - {userAlbumInDB.artist}
+            {userAlbumInDB.album} - {userAlbumInDB.artist}
           </h3>
         </div>
 

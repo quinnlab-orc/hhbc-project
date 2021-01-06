@@ -31,9 +31,6 @@ app.use(AuthPassport.session());
 app.use("/api/users", userRoute);
 app.use("/api/votes", voteRoute);
 app.use("/api/spotify", spotifyRoute);
-app.get('/callback', function(req, res) {
-  console.log("callback hit")
-})
 
 // serve react app build
 app.use(express.static(path.join(__dirname, 'build')));

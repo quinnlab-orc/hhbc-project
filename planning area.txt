@@ -10,4 +10,12 @@ Site styling themes, style buttons, inputs, etc - Done, subject to change
 
 ["Brandon", "Quinn", "Dev", "Taha", "Marvin", "Ashish"]
 
-Spotify stuff
+
+
+
+
+
+
+
+
+Figure out pagination stuff for spotify api

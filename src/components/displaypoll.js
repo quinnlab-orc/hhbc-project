@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import ChooseNewAlbums from "./choosenewalbums";
+
+import noAlbumArt from "./defaultnoalbum.jpg";
 // import Swal from "sweetalert2";
 const axios = require("axios");
 
@@ -11,8 +13,50 @@ const DisplayPoll = () => {
     { artist: "", title: "" },
     { artist: "", title: "" },
   ]);
+  const [albumCover1, setAlbumCover1] = useState(noAlbumArt);
+  const [albumCover2, setAlbumCover2] = useState(noAlbumArt);
+  const [albumCover3, setAlbumCover3] = useState(noAlbumArt);
 
   const [name, setName] = useState("");
+
+  const getAlbumCovers = () => {
+    console.log("here");
+
+    // const album1 = { album: albumState[0].title, artist: albumState[0].artist };
+    // const album2 = { album: albumState[1].title, artist: albumState[1].artist };
+    // const album3 = { album: albumState[2].title, artist: albumState[2].artist };
+
+    axios
+      .get("/api/spotify/getalbumart")
+      .then(function (response) {
+        console.log(response.data);
+
+        for (let i = 0; i < response.data.length; i++) {
+          if (
+            response.data[i].album === albumState[0].title &&
+            response.data[i].artist === albumState[0].artist
+          ) {
+            setAlbumCover1(response.data[i].albumUrl);
+          } else if (
+            response.data[i].album === albumState[1].title &&
+            response.data[i].artist === albumState[1].artist
+          ) {
+            setAlbumCover2(response.data[i].albumUrl);
+          } else if (
+            response.data[i].album === albumState[2].title &&
+            response.data[i].artist === albumState[2].artist
+          ) {
+            setAlbumCover3(response.data[i].albumUrl);
+          }
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+  useEffect(() => {
+    getAlbumCovers();
+  }, [albumState]);
 
   const getAlbums = () => {
     axios
@@ -25,7 +69,7 @@ const DisplayPoll = () => {
         ]);
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error(error);
       });
   };
 
@@ -42,7 +86,7 @@ const DisplayPoll = () => {
   if (userVote === undefined) {
     logInVis = "none";
   } else {
-    logInVis = "block"
+    logInVis = "block";
   }
 
   let votes0 = allVotes.filter((album) => album.album === albumState[0].title);
@@ -66,7 +110,7 @@ const DisplayPoll = () => {
         }
       })
       .catch(function (error) {
-        console.error(error);
+        // // console.error(error);
       });
   };
 
@@ -81,14 +125,14 @@ const DisplayPoll = () => {
       .then(function (response) {
         setName(response.data.firstname);
         // setLogInVis("block");
-        logInVis = "block";
+        // logInVis = "block";
 
         if (response.data.firstname === "Quinn") {
           setAdminVis("block");
         }
       })
       .catch(function (error) {
-        console.error(error);
+        // console.error(error);
       });
   }, []);
 
@@ -119,10 +163,40 @@ const DisplayPoll = () => {
       });
   };
 
+  const unselectedStyle = { border: "2px solid gold" },
+    selectedStyle = { border: "2px solid  rgb(15, 59, 192)" };
+
+  const [album1Style, setAlbum1Style] = useState(unselectedStyle);
+  const [album2Style, setAlbum2Style] = useState(unselectedStyle);
+  const [album3Style, setAlbum3Style] = useState(unselectedStyle);
+
+  const handleUserChoice = (index) => {
+    if (index === 0) {
+      //album1
+      setSelectedAlbum([true, false, false]);
+      setAlbum1Style(selectedStyle);
+      setAlbum2Style(unselectedStyle);
+      setAlbum3Style(unselectedStyle);
+    }
+    if (index === 1) {
+      //album1
+      setSelectedAlbum([false, true, false]);
+      setAlbum1Style(unselectedStyle);
+      setAlbum2Style(selectedStyle);
+      setAlbum3Style(unselectedStyle);
+    }
+    if (index === 2) {
+      //album1
+      setSelectedAlbum([false, false, true]);
+      setAlbum1Style(unselectedStyle);
+      setAlbum2Style(unselectedStyle);
+      setAlbum3Style(selectedStyle);
+    }
+  };
+
   return (
     //use one form with 3 radio buttons and a submit for voting. Can control radio button state if they have already voted
     <div>
-
       <div className="pollRules">
         <p>To vote, simply select one of the options below and hit submit.</p>
         <p>
@@ -131,21 +205,28 @@ const DisplayPoll = () => {
         </p>
       </div>
 
-      <div className="pollIsLogged" style={{ display: logInVis }}>
+      {/* <div className="pollIsLogged" style={{ display: logInVis }}>
         <h3>You voted for: {userVote}</h3>
-      </div>
+      </div> */}
 
       <div className="poll">
         <form onSubmit={(e) => sendVotes(e)}>
           <div className="pollSelections">
             <div className="voteHolder">
+              <img
+                src={albumCover1}
+                alt={`album art for ${albumState[0].title}`}
+                className="albumArt"
+                style={album1Style}
+                onClick={() => handleUserChoice(0)}
+              ></img>
               <h3>{albumState[0].title}</h3>
               <h4>{albumState[0].artist}</h4>
-              <input
+              {/* <input
                 type="radio"
                 checked={selectedAlbum[0]}
                 onChange={() => setSelectedAlbum([true, false, false])}
-              ></input>
+              ></input> */}
               <p>{votes0.length}</p>
               <p>
                 {voteNames0.map((name) => (
@@ -155,13 +236,20 @@ const DisplayPoll = () => {
             </div>
 
             <div className="voteHolder">
+              <img
+                src={albumCover2}
+                alt={`album art for ${albumState[1].title}`}
+                className="albumArt"
+                style={album2Style}
+                onClick={() => handleUserChoice(1)}
+              ></img>
               <h3>{albumState[1].title}</h3>
               <h4>{albumState[1].artist}</h4>
-              <input
+              {/* <input
                 type="radio"
                 checked={selectedAlbum[1]}
                 onChange={() => setSelectedAlbum([false, true, false])}
-              ></input>
+              ></input> */}
               <p>{votes1.length}</p>
               <p>
                 {voteNames1.map((name) => (
@@ -171,14 +259,20 @@ const DisplayPoll = () => {
             </div>
 
             <div className="voteHolder">
-              {/* <h3>{albumState[2].artist + " - " + albumState[2].title}</h3> */}
+              <img
+                src={albumCover3}
+                alt={`album art for ${albumState[2].title}`}
+                className="albumArt"
+                style={album3Style}
+                onClick={() => handleUserChoice(2)}
+              ></img>
               <h3>{albumState[2].title}</h3>
               <h4>{albumState[2].artist}</h4>
-              <input
+              {/* <input
                 type="radio"
                 checked={selectedAlbum[2]}
                 onChange={() => setSelectedAlbum([false, false, true])}
-              ></input>
+              ></input> */}
               <p>{votes2.length}</p>
               <p>
                 {voteNames2.map((name) => (
@@ -188,8 +282,8 @@ const DisplayPoll = () => {
             </div>
           </div>
           <button className="voteButton" type="submit">
-          Submit
-        </button>
+            Submit
+          </button>
         </form>
         {/* <button className="voteButton" onClick={() => sendVotes()}>
           Submit
