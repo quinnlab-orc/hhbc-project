@@ -65,6 +65,11 @@ const HomePage = () => {
 
   const sendUserAlbum = () => {
     setUserChoiceVis("none");
+    axios.post("/api/spotify/deletealbumart", userAlbumInDB)
+    .then(function (response){})
+
+
+
     axios
       .post("/api/users/useralbum", userAlbum)
       .then(function (response) {
@@ -101,7 +106,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="Homepage">
-        <h1>Welcome{name} to the Hip-Hop Book Club home page!</h1>
+        <h1 className="greeting">Welcome{name} to the Hip-Hop Book Club home page!</h1>
         <div>
           <h3>This week's album is: Licensed to Ill - Beastie Boys</h3>
         </div>
