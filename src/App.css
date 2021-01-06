@@ -17,10 +17,6 @@
 }
 
 .signUpDiv {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; */
   border: var(--border);
   border-radius: var(--border-radius);
   background: var(--black);
@@ -79,7 +75,7 @@
   border-radius: var(--border-radius);
   border: var(--border);
   background: var(--black);
-  width: 60%;
+  width: 75%;
 }
 
 .pollIsLogged {
@@ -186,6 +182,30 @@
 .voteHolder {
   width: 30%;
 }
+
+.albumArt {
+  margin-top: 10%;
+  height: 250px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.albumArt:hover {
+  border:2px solid var(--blue) !important;
+}
+
+.albumArt:active {
+  border:2px solid royalblue;
+}
+
+.albumArtHomePage {
+  height: 250px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+
+
 
 .badTry {
   font-size: smaller;
@@ -403,7 +423,6 @@ input[type="text"] {
 }
 
 .user-greeting {
-
   display: flex;
   justify-content: center;
   align-items: center;

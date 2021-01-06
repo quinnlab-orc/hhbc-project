@@ -7,3 +7,15 @@ Forgot Password button - Done
 Better styling for header
 mobile styling and responsiveness
 Site styling themes, style buttons, inputs, etc - Done, subject to change
+
+["Brandon", "Quinn", "Dev", "Taha", "Marvin", "Ashish"]
+
+
+
+
+
+
+
+
+
+Figure out pagination stuff for spotify api
