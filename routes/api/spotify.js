@@ -15,9 +15,14 @@ var spotifyApi = new SpotifyWebApi({
 router.get("/getalbumart", async (req, res) => {
   const allAlbumCovers = await AlbumArt.find();
   // console.log(allAlbumCovers)
-  res.send(allAlbumCovers)
-})
+  res.send(allAlbumCovers);
+});
 
+router.post("/deletealbumart", async (req, res) => {
+  const deleteAlbumArt = await AlbumArt.findOneAndRemove({
+    artist: req.body.artist,
+  });
+});
 
 // This searches for an album in the spotify web api, then saves found album cover url's to the database
 // req.body needs to be in this format { artist: <your artist>, album: <your album> }
@@ -25,7 +30,8 @@ router.post("/albumsearch", async (req, res) => {
   const album = req.body.album;
   const artist = req.body.artist;
   const findExisting = await AlbumArt.findOne({ album: album });
-  if (findExisting) { // if album already exists in DB, dont run searches
+  if (findExisting) {
+    // if album already exists in DB, dont run searches
     return;
   }
 
@@ -48,6 +54,7 @@ router.post("/albumsearch", async (req, res) => {
         .then(function () {
           spotifyApi.getArtistAlbums(artistID, { limit: 50 }).then(
             function (data) {
+              console.log("starting search one")
               for (let i = 0; i < data.body.items.length; i++) {
                 if (data.body.items[i].album_type === "album") {
                   if (data.body.items[i].name === album) {
@@ -58,6 +65,7 @@ router.post("/albumsearch", async (req, res) => {
                       artist: artist,
                     });
                     albumForDB.save();
+                    res.send("Album art saved");
                   }
                   foundAlbum = false;
                 }
@@ -76,6 +84,8 @@ router.post("/albumsearch", async (req, res) => {
                             artist: artist,
                           });
                           albumForDB.save();
+
+                          res.send("Album art saved");
                         } else if (data.body.items[i].name.includes(album)) {
                           foundAlbum = true;
                           const albumForDB = new AlbumArt({
@@ -84,6 +94,8 @@ router.post("/albumsearch", async (req, res) => {
                             artist: artist,
                           });
                           albumForDB.save();
+
+                          res.send("Album art saved");
                         }
                         foundAlbum = false;
                       }
@@ -105,6 +117,8 @@ router.post("/albumsearch", async (req, res) => {
                             artist: artist,
                           });
                           albumForDB.save();
+
+                          res.send("Album art saved");
                         } else if (data.body.items[i].name.includes(album)) {
                           const albumForDB = new AlbumArt({
                             albumUrl: data.body.items[i].images[0].url,
@@ -112,6 +126,8 @@ router.post("/albumsearch", async (req, res) => {
                             artist: artist,
                           });
                           albumForDB.save();
+
+                          res.send("Album art saved");
                         }
                       }
                     }

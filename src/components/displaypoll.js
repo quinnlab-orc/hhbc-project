@@ -19,12 +19,9 @@ const DisplayPoll = () => {
 
   const [name, setName] = useState("");
 
+
   const getAlbumCovers = () => {
     console.log("here");
-
-    // const album1 = { album: albumState[0].title, artist: albumState[0].artist };
-    // const album2 = { album: albumState[1].title, artist: albumState[1].artist };
-    // const album3 = { album: albumState[2].title, artist: albumState[2].artist };
 
     axios
       .get("/api/spotify/getalbumart")
@@ -49,6 +46,8 @@ const DisplayPoll = () => {
             setAlbumCover3(response.data[i].albumUrl);
           }
         }
+
+        searchAlbumCovers();
       })
       .catch(function (error) {
         console.error(error);
@@ -57,6 +56,46 @@ const DisplayPoll = () => {
   useEffect(() => {
     getAlbumCovers();
   }, [albumState]);
+
+  const searchAlbumCovers = () => {
+    console.log('here')
+    const album1 = { album: albumState[0].title, artist: albumState[0].artist };
+    const album2 = { album: albumState[1].title, artist: albumState[1].artist };
+    const album3 = { album: albumState[2].title, artist: albumState[2].artist };
+
+    if (
+      albumCover1 !== noAlbumArt &&
+      albumCover2 !== noAlbumArt &&
+      albumCover3 !== noAlbumArt
+    ) {
+      axios
+        .post("/api/spotify/albumsearch", album1)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+        axios
+        .post("/api/spotify/albumsearch", album2)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+        axios
+        .post("/api/spotify/albumsearch", album3)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+  };
 
   const getAlbums = () => {
     axios

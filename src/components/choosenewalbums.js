@@ -42,6 +42,40 @@ const ChooseNewAlbums = () => {
     .catch(function (error) {
       console.error(error);
     });
+
+  // const searchAlbumCovers = () => {
+  //   console.log("here");
+  //   const album1 = { album: album1.title, artist: album1.artist };
+  //   const album2 = { album: album2.title, artist: album2.artist };
+  //   const album3 = { album: album3.title, artist: album3.artist };
+
+  //   axios
+  //     .post("/api/spotify/albumsearch", album1)
+  //     .then(function (response) {
+  //       console.log(response);
+  //       axios
+  //         .post("/api/spotify/albumsearch", album2)
+  //         .then(function (response) {
+  //           console.log(response);
+  //           axios
+  //             .post("/api/spotify/albumsearch", album3)
+  //             .then(function (response) {
+  //               console.log(response);
+  //             })
+  //             .catch(function (error) {
+  //               console.error(error);
+  //             });
+  //         })
+  //         .catch(function (error) {
+  //           console.error(error);
+  //         });
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // };
+
+  // searchAlbumCovers();
 };
 
 export default ChooseNewAlbums;

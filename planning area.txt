@@ -4,9 +4,13 @@ Sign in forwards user to home page on success - Done
 Sign up and Sign in replaced with Account and Log Out in nav bar when signed in - Done
 Allow users to edit name/email/account from the profile page - Done
 Forgot Password button - Done
-Better styling for header
+Better styling for header - Done
 mobile styling and responsiveness
 Site styling themes, style buttons, inputs, etc - Done, subject to change
+Make album art search happen when new albums picked for the week
+Make album art search happen when user submits personal album
+
+
 
 ["Brandon", "Quinn", "Dev", "Taha", "Marvin", "Ashish"]
 
@@ -14,8 +18,15 @@ Site styling themes, style buttons, inputs, etc - Done, subject to change
 
 
 
+make the album art search work for choosing new albums of the week
 
 
 
+Not on Spotify
+3 Feet High and Rising - De La Soul
+Below the Heavens - Blu & Exile
+The Ecstatic - Mos Def
 
-Figure out pagination stuff for spotify api
+
+Hard to code around
+Tha Carter II - Lil Wayne    <<< selects Tha Carter III instead

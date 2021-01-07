@@ -108,7 +108,7 @@ const HomePage = () => {
       <div className="Homepage">
         <h1 className="greeting">Welcome{name} to the Hip-Hop Book Club home page!</h1>
         <div>
-          <h3>This week's album is: Licensed to Ill - Beastie Boys</h3>
+          <h3>This week's album is: It's Dark and Hell Is Hot - DMX</h3>
         </div>
         <div>
           <h3>{userAlbumInDB.user}'s album for the week is:</h3>
