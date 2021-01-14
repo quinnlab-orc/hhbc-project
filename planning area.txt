@@ -18,10 +18,6 @@ Make album art search happen when user submits personal album
 
 
 
-make the album art search work for choosing new albums of the week
-
-
-
 Not on Spotify
 3 Feet High and Rising - De La Soul
 Below the Heavens - Blu & Exile
