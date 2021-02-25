@@ -18,12 +18,10 @@ const DisplayPoll = () => {
   const [albumCover3, setAlbumCover3] = useState(noAlbumArt);
 
   const [name, setName] = useState("");
-
-
-  const getAlbumCovers = () => {
+  const getAlbumCoversFromDB = async () => {
     console.log("here");
 
-    axios
+    await axios
       .get("/api/spotify/getalbumart")
       .then(function (response) {
         console.log(response.data);
@@ -51,8 +49,9 @@ const DisplayPoll = () => {
         console.error(error);
       });
   };
+
   useEffect(() => {
-    getAlbumCovers();
+    getAlbumCoversFromDB();
   }, [albumState]);
 
 

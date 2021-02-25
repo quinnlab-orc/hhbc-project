@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { TextField, Button } from "@material-ui/core";
+import styled from "styled-components";
 const axios = require("axios");
 
 const SignIn = (props) => {
@@ -31,47 +33,83 @@ const SignIn = (props) => {
 
   return (
     <div>
-      <div className="signIn">
-        <p style={{ fontWeight: "bold", fontSize: "large" }}>Sign In</p>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <label>Email</label>
-          <input
+      <SignInDiv>
+        {/* <p style={{ fontWeight: "bold", fontSize: "large" }}>Sign In</p> */}
+        <span style={{ fontWeight: "bold", fontSize: "large" }}>Sign In</span>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <TextField
             type="email"
+            placeholder="Email"
+            inputProps={{
+              style: {
+                backgroundColor: "white",
+                color: "black",
+              }
+            }}
             onChange={(event) =>
               setSignIn({
                 username: event.target.value,
                 password: signIn.password,
               })
             }
-          ></input>
-          <label>Password</label>
-          <input
+          />
+          <TextField
             type="password"
+            placeholder="Password"
+            inputProps={{
+              style: {
+                backgroundColor: "white",
+                color: "black",
+              }
+            }}
             onChange={(event) =>
               setSignIn({
                 username: signIn.username,
                 password: event.target.value,
               })
             }
-          ></input>
+          />
 
           <span className="badTry" style={{ visibility: badTry }}>
             Incorrect username or password.
           </span>
           <div className="signinLinks">
-            <button
+            <Button
               onClick={() => history.push("/passwordreset")}
-              type="button"
-              className="forgotpwLink"
+              variant="text"
+              size="small"
             >
               Forgot password?
-            </button>
-            <button type="submit">Submit</button>
+            </Button>
+            <Button type="submit" variant="contained" style={{ backgroundColor: "#2196f3" }}>Submit</Button>
           </div>
-        </form>
-      </div>
+        </Form>
+      </SignInDiv>
     </div>
   );
 };
 
 export default SignIn;
+
+const Form = styled.form`
+display: flex;
+flex-direction: column;
+margin-left: auto;
+margin-right: auto;
+width: 90%;
+justify-content: space-evenly;
+`;
+
+const SignInDiv = styled.div`
+display: flex;
+flex-direction: column;
+border: 2px solid black;
+border-radius: 20px;
+height: 250px;
+width: 300px;
+justify-content: space-around;
+margin-left: auto;
+margin-right: auto;
+margin-top: 5%;
+background: whitesmoke;
+`;

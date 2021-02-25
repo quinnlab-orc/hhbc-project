@@ -33,6 +33,7 @@ const ChooseNewAlbums = () => {
   }
 
   let albums = [album1, album2, album3];
+  console.log("albums", albums)
 
   axios
     .post("/api/votes/newalbums", albums)
@@ -43,39 +44,24 @@ const ChooseNewAlbums = () => {
       console.error(error);
     });
 
-  // const searchAlbumCovers = () => {
-  //   console.log("here");
-  //   const album1 = { album: album1.title, artist: album1.artist };
-  //   const album2 = { album: album2.title, artist: album2.artist };
-  //   const album3 = { album: album3.title, artist: album3.artist };
+  const searchAlbumCovers = () => {
+    console.log("here");
+    const albumSearch1 = { album: album1.title, artist: album1.artist };
+    const albumSearch2 = { album: album2.title, artist: album2.artist };
+    const albumSearch3 = { album: album3.title, artist: album3.artist };
 
-  //   axios
-  //     .post("/api/spotify/albumsearch", album1)
-  //     .then(function (response) {
-  //       console.log(response);
-  //       axios
-  //         .post("/api/spotify/albumsearch", album2)
-  //         .then(function (response) {
-  //           console.log(response);
-  //           axios
-  //             .post("/api/spotify/albumsearch", album3)
-  //             .then(function (response) {
-  //               console.log(response);
-  //             })
-  //             .catch(function (error) {
-  //               console.error(error);
-  //             });
-  //         })
-  //         .catch(function (error) {
-  //           console.error(error);
-  //         });
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // };
+    axios.post("/api/spotify/albumsearch", albumSearch1)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    axios.post("/api/spotify/albumsearch", albumSearch2)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    axios.post("/api/spotify/albumsearch", albumSearch3)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  };
 
-  // searchAlbumCovers();
+  searchAlbumCovers();
 };
 
 export default ChooseNewAlbums;
